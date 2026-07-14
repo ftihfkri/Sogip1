@@ -10,6 +10,7 @@ import { WhySOGIP } from "./pages/WhySOGIP";
 import { MasterPlan } from "./pages/MasterPlan";
 import { Contact } from "./pages/Contact";
 import { Projects } from "./pages/Projects";
+import { LogoShowcase } from "./pages/LogoShowcase";
 
 function App() {
   useEffect(() => {
@@ -27,6 +28,7 @@ function App() {
           <Route path="/master-plan" element={<MasterPlan />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/projects" element={<Projects />} />
+          <Route path="/logo-showcase" element={<LogoShowcase />} />
         </Routes>
         <Footer />
       </BrowserRouter>

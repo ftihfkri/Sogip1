@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Linkedin, Facebook, Twitter } from 'lucide-react';
+import { Logo } from './Logo';
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -12,12 +13,9 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
           <div>
-            <Link to="/" className="inline-block mb-6">
-              <div className="text-2xl font-bold">
-                <span className="text-white">SOGIP</span>
-                <span className="text-[#FFB020]">.</span>
-              </div>
-            </Link>
+            <div className="mb-6">
+              <Logo variant="large" />
+            </div>
             <p className="text-gray-400 text-sm leading-relaxed mb-6">
               Sabah Oil and Gas Industrial Park - Driving sustainable energy development and economic growth in Sabah.
             </p>

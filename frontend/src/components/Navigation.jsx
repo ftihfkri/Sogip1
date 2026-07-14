@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import { Logo, LogoSimple } from './Logo';
 
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -39,15 +40,7 @@ export const Navigation = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3 group">
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="text-2xl font-bold"
-            >
-              <span className="text-white">SOGIP</span>
-              <span className="text-[#FFB020]">.</span>
-            </motion.div>
-          </Link>
+          <Logo />
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
