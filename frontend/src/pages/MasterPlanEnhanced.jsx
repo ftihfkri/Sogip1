@@ -298,9 +298,9 @@ const InteractiveMapSection = () => {
                     style={{ backgroundColor: zone.color }}
                   />
                   
-                  {/* Main marker - LARGER SIZE */}
+                  {/* Main marker - STATIC NUMBER, NO ROTATION */}
                   <motion.div
-                    whileHover={{ scale: 1.3, rotate: 360 }}
+                    whileHover={{ scale: 1.2 }}
                     whileTap={{ scale: 0.9 }}
                     transition={{ type: 'spring', stiffness: 300 }}
                     className="relative w-16 h-16 rounded-full border-4 border-[#0A1628] shadow-2xl flex items-center justify-center cursor-pointer"
@@ -309,13 +309,10 @@ const InteractiveMapSection = () => {
                       boxShadow: `0 0 30px ${zone.color}80, 0 0 60px ${zone.color}40`,
                     }}
                   >
-                    <motion.div
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
-                      className="text-white font-bold text-lg"
-                    >
+                    {/* STATIC NUMBER - NO ANIMATION */}
+                    <div className="text-white font-bold text-xl">
                       {zone.id}
-                    </motion.div>
+                    </div>
                   </motion.div>
 
                   {/* Hover tooltip */}
@@ -381,6 +378,57 @@ const InteractiveMapSection = () => {
               </motion.div>
             ))}
           </div>
+        </motion.div>
+
+        {/* Zone Quick Reference List - NEW */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="mt-12 bg-[#0A1628]/50 backdrop-blur-sm border border-white/10 rounded-2xl p-8"
+        >
+          <h3 className="text-2xl font-bold text-white mb-6 text-center">
+            Zone Quick Reference
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {zones.map((zone) => (
+              <motion.button
+                key={zone.id}
+                onClick={() => setSelectedZone(zone)}
+                whileHover={{ scale: 1.02 }}
+                className="flex items-start space-x-4 p-4 bg-white/5 rounded-xl border border-white/10 hover:border-white/30 transition-all text-left group"
+              >
+                <div
+                  className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 font-bold text-white text-lg"
+                  style={{ 
+                    backgroundColor: zone.color,
+                    boxShadow: `0 0 20px ${zone.color}40`,
+                  }}
+                >
+                  {zone.id}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h4 className="text-white font-semibold mb-1 group-hover:text-[#00D4FF] transition-colors">
+                    {zone.name}
+                  </h4>
+                  <p className="text-gray-400 text-xs mb-1">{zone.area}</p>
+                  <div
+                    className="inline-block px-2 py-0.5 rounded-full text-xs font-semibold"
+                    style={{
+                      backgroundColor: `${zone.statusColor}20`,
+                      color: zone.statusColor,
+                      border: `1px solid ${zone.statusColor}40`,
+                    }}
+                  >
+                    {zone.status}
+                  </div>
+                </div>
+              </motion.button>
+            ))}
+          </div>
+          <p className="text-center text-gray-400 text-sm mt-6">
+            💡 Click any zone to view detailed information including investment value, completion timeline, and key features
+          </p>
         </motion.div>
 
         {/* Zone Detail Modal */}

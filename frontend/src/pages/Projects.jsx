@@ -1,11 +1,13 @@
 import React, { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Calendar, DollarSign, MapPin, TrendingUp, CheckCircle2 } from 'lucide-react';
+import { HorizontalImageScroll } from '../components/HorizontalImageScroll';
 
 export const Projects = () => {
   return (
     <div className="bg-[#0A1628] min-h-screen pt-20">
       <HeroSection />
+      <ImageScrollSection />
       <AnchorProjectsSection />
       <InvestmentStatsSection />
       <UpcomingProjectsSection />
@@ -40,6 +42,48 @@ const HeroSection = () => {
           </p>
         </motion.div>
       </div>
+    </section>
+  );
+};
+
+// Image Scroll Section
+const ImageScrollSection = () => {
+  const facilityImages = [
+    {
+      url: 'https://images.unsplash.com/photo-1709873906965-e3a3c1bd1b94?w=800&q=80',
+      title: 'LNG Facility',
+      subtitle: 'State-of-the-art processing',
+    },
+    {
+      url: 'https://images.unsplash.com/photo-1566221857770-508d35ee6220?w=800&q=80',
+      title: 'Power Generation',
+      subtitle: '600MW capacity',
+    },
+    {
+      url: 'https://images.unsplash.com/photo-1775580279270-574c001be3a5?w=800&q=80',
+      title: 'Refinery Complex',
+      subtitle: '150,000 BPD processing',
+    },
+    {
+      url: 'https://images.unsplash.com/photo-1597334948330-38795f25d05d?w=800&q=80',
+      title: 'Deep Water Port',
+      subtitle: 'VLCC capable berths',
+    },
+    {
+      url: 'https://images.unsplash.com/photo-1562892302-97faedd66f1c?w=800&q=80',
+      title: 'Marine Facilities',
+      subtitle: 'World-class infrastructure',
+    },
+  ];
+
+  return (
+    <section className="py-20 bg-gradient-to-b from-[#0A1628] to-[#0D1F36]">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-8">
+        <h2 className="text-3xl md:text-4xl font-bold text-white text-center">
+          World-Class <span className="text-[#00D4FF]">Facilities</span>
+        </h2>
+      </div>
+      <HorizontalImageScroll images={facilityImages} direction="left" />
     </section>
   );
 };

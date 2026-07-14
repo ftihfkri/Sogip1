@@ -226,7 +226,7 @@ const LatestNews = () => {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628] via-[#0A1628]/60 to-transparent" />
                     <div className="absolute top-4 left-4">
-                      <div className="px-3 py-1 bg-[#00D4FF]/20 backdrop-blur-sm border border-[#00D4FF]/30 rounded-full text-[#00D4FF] text-xs font-semibold">
+                      <div className="px-4 py-2 bg-[#00D4FF] backdrop-blur-md border-2 border-white/30 rounded-full text-white text-xs font-bold shadow-xl shadow-[#00D4FF]/50">
                         {item.category}
                       </div>
                     </div>

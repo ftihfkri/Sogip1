@@ -58,7 +58,7 @@ export const Navigation = () => {
           <Logo />
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-6">
             {navLinks.map((link) => (
               <button
                 key={link.path}
@@ -87,7 +87,7 @@ export const Navigation = () => {
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-6 py-2.5 bg-gradient-to-r from-[#00D4FF] to-[#0099CC] text-white text-sm font-semibold rounded-lg shadow-lg shadow-[#00D4FF]/20 hover:shadow-[#00D4FF]/40 transition-all duration-300"
+                className="px-5 py-2 bg-gradient-to-r from-[#00D4FF] to-[#0099CC] text-white text-sm font-semibold rounded-lg shadow-lg shadow-[#00D4FF]/20 hover:shadow-[#00D4FF]/40 transition-all duration-300"
               >
                 Invest Now
               </motion.div>
