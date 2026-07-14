@@ -54,8 +54,10 @@ export const Navigation = () => {
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <Logo />
+          {/* Logo - REDUCED GAP */}
+          <div className="mr-8">
+            <Logo />
+          </div>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-6">

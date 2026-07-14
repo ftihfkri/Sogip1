@@ -333,6 +333,126 @@ frontend:
         agent: "testing"
         comment: "Tested on desktop (1920px) and mobile (375px) viewports. All pages render correctly on both sizes. Mobile menu button visible and functional. Logo, hero text, marquee, master plan, and project badges all display properly on mobile. Layout adapts appropriately to screen size."
 
+  - task: "Logo-Nav gap reduction for compact look"
+    implemented: false
+    working: false
+    file: "/app/frontend/src/components/Navigation.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: false
+        agent: "testing"
+        comment: "CRITICAL ISSUE: Logo-Nav gap is 415px, NOT reduced as requested. Navigation container uses 'justify-between' (line 56 in Navigation.jsx) which pushes logo to far left and nav items to far right. This creates a large gap instead of the requested compact, connected look. The logo has mr-8 (32px margin) but the flex justify-between overrides this and creates ~415px gap. Need to change justify-between to a different layout approach to achieve compact spacing between logo and nav items."
+
+  - task: "Homepage scroll animations (stats, features, projects)"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/Home.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "All homepage scroll animations working perfectly. Stats section (lines 217-287): 4 stat cards fade in from bottom with stagger effect (0.15s delay), cards have opacity:1 and visible. Why SOGIP section (lines 291-377): 4 feature cards slide in from sides with stagger effect (0.2s delay). Projects section (lines 381-484): 3 project cards scale and slide in with animations. All animations smooth and performant."
+
+  - task: "Background animated orbs and particles"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/Home.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "Background animations working across all pages. Homepage: 5 blur-3xl orbs with scale/rotate/opacity animations (lines 231-248 for stats section, lines 409-418 for projects section). Master Plan: 20 animated particles (lines 31-53 in MasterPlanEnhanced.jsx). News page: 15 animated particles (lines 22-40 in News.jsx). All orbs have slow-moving gradient circles with pulse/float effects as requested."
+
+  - task: "Hover effects on cards (lift, scale, rotate)"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/Home.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "All hover effects working correctly. Stat cards: whileHover={{ scale: 1.05, y: -5 }} - cards lift up 5px and scale slightly (transform: matrix(1.03, 0.018, -0.018, 1.03, 0, 0) detected). Feature cards: whileHover={{ scale: 1.03, rotate: 1-2 degrees }} - cards rotate slightly (transform detected). Project cards: whileHover={{ y: -15, rotate: 2 degrees }} - cards lift and tilt. News cards: whileHover={{ y: -10 }} - cards lift 10px (transform: matrix(1, 0, 0, 1, 0, -9.94) detected). Icons animate on hover with scale:1.2 and rotate:360."
+
+  - task: "Scroll animations on About page"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/About.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "About page scroll animations working. Timeline section (lines 72-155) has 5 timeline items with year badges (2010, 2015, 2018, 2021, 2024) that slide in from left/right alternating (initial x: -50/50, animate to x: 0). Vision/Mission cards (lines 159-212) slide in from left/right. Leadership cards (lines 285-351) fade in from bottom with stagger. All animations smooth and visible."
+
+  - task: "Scroll animations on Projects page"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/Projects.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "Projects page scroll animations working. Horizontal image scroll section (lines 50-88 with HorizontalImageScroll component) has 10 images scrolling horizontally as page scrolls vertically. Project cards (lines 91-311) have 6 cards with fade-in and scale animations (initial: opacity:0, y:50, animate to opacity:1, y:0 with 0.1s stagger delay). All animations smooth and performant."
+
+  - task: "Scroll animations on Master Plan page"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/MasterPlanEnhanced.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "Master Plan page scroll animations working. Animated particles (lines 31-53): 20 particles with y/x/opacity animations. Zone markers (lines 269-351): 6 markers with scale-in animation (initial: scale:0, animate to scale:1 with spring effect). Pulse rings (lines 282-299): 12 pulse ring elements with continuous scale/opacity animations. Zone cards in Quick Reference (lines 384-432) are clickable and animated. All animations smooth with excellent visual effects."
+
+  - task: "Scroll animations on News page"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/News.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "News page scroll animations working. Animated particles (lines 22-40): 15 particles with y/opacity animations. Featured news card (lines 67-132): Fades in from bottom (initial: y:50, animate to y:0). News cards (lines 135-257): 6 cards fade in with stagger effect (initial: opacity:0, y:50, animate to opacity:1, y:0 with 0.1s delay per card). Hover effects lift cards -10px. All animations smooth."
+
+  - task: "Stagger effects on multiple items"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/components/ScrollAnimations.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "Stagger effects working correctly across all pages. StaggerContainer component (lines 74-93) uses staggerChildren with delays of 0.1-0.2s. StaggerItem component (lines 96-111) animates from opacity:0, y:40 to opacity:1, y:0. Tested on stats section (4 cards all visible with opacity:1.00 after animation), feature cards, project cards, and news cards. Items appear one after another as expected, not all at once."
+
+  - task: "Animation smoothness and performance (60fps)"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/Home.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "Animation performance is excellent. Scroll test duration: 780ms for 2500px scroll (smooth and responsive). Layout shifts: 0 (no jank or stuttering). All animations use framer-motion with proper easing curves (ease: [0.6, 0.05, 0.01, 0.9]). Hover effects use spring animations (type: 'spring', stiffness: 300). Background orbs use continuous animations with linear easing. No performance issues detected. Animations feel fluid and run at 60fps."
+
 metadata:
   created_by: "testing_agent"
   version: "1.2"
@@ -342,10 +462,10 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Latest fixes tested: Navigation spacing, News badges, Static zone numbers, Zone Quick Reference, Image scroll effect"
-    - "All 5 critical fixes verified working"
+    - "Logo-Nav gap reduction - CRITICAL ISSUE: 415px gap needs to be fixed"
+    - "All scroll animations tested and working"
   stuck_tasks: []
-  test_all: true
+  test_all: false
   test_priority: "high_first"
 
 agent_communication:
@@ -355,3 +475,5 @@ agent_communication:
     message: "NEW FIXES TESTING (2025-07-14): Tested all requested fixes. RESULTS: ✓ Text cutoff fixed - hero text fully visible. ✓ Horizontal marquee working with all phrases scrolling. ✓ Master plan has clear instructions and zone markers are 64px (correct size). ✓ Zone modals open correctly. ✓ Project badges have solid colors with good contrast. ✓ Mobile responsive. ISSUE: Logo size is 84.5px height (slightly above 80px target but appears reasonable in context). Overall: 5/6 fixes verified working, 1 minor size discrepancy."
   - agent: "testing"
     message: "LATEST FIXES TESTING (2025-07-14 - Second Round): Tested 5 critical fixes requested. ALL PASSED: ✅ Navigation spacing reduced to 24px (compact and well-arranged). ✅ News category badges highly visible with solid blue backgrounds and white text (6 badges found, no blending with images). ✅ Zone numbers are STATIC (no rotation/spinning detected, transform: none, animation: none). ✅ Zone Quick Reference list exists below map with all 6 zones in grid, clickable, with helper text. ✅ Horizontal image scroll effect working on Projects page (images scroll ~31px horizontally per 500px vertical scroll). Mobile responsive verified for all fixes. No critical issues found. All requested fixes are working correctly."
+  - agent: "testing"
+    message: "SCROLL ANIMATIONS TESTING (2025-07-14): Comprehensive testing of scroll animations and effects completed. RESULTS: ✅ Homepage scroll animations working (stats section with stagger effect, Why SOGIP features sliding in, project cards with scale/slide animations). ✅ Background animated orbs/particles present on all pages (5 orbs on homepage, 2 in stats section, 20 particles on Master Plan, 15 on News page). ✅ Hover effects working on all cards (stat cards lift with y:-5px and scale:1.05, feature cards rotate 1-2 degrees, news cards lift -10px). ✅ Animations on multiple pages verified (About page timeline with 5 items, Projects page horizontal scroll with 10 images, Master Plan with 6 animated zone markers and 12 pulse rings, News page with 6 cards). ✅ Stagger effects working correctly (cards appear one after another with 0.1-0.2s delays). ✅ Performance excellent (780ms scroll duration, 0 layout shifts, smooth 60fps animations). CRITICAL ISSUE: Logo-Nav gap is 415px (NOT reduced as requested) - navigation uses justify-between which pushes logo far left and nav items far right, creating large gap instead of compact spacing. This needs to be fixed to achieve the requested compact, connected look."

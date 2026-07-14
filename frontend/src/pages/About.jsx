@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Target, Eye, Users, Award, TrendingUp, Globe } from 'lucide-react';
+import { FadeInUp, FadeInLeft, FadeInRight, StaggerContainer, StaggerItem } from '../components/ScrollAnimations';
 
 export const About = () => {
   const heroRef = useRef(null);

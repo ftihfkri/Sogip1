@@ -13,6 +13,7 @@ import {
   CheckCircle2,
 } from 'lucide-react';
 import { HorizontalMarquee } from '../components/HorizontalMarquee';
+import { FadeInUp, FadeInLeft, FadeInRight, StaggerContainer, StaggerItem } from '../components/ScrollAnimations';
 
 export const Home = () => {
   const heroRef = useRef(null);
@@ -225,29 +226,62 @@ const StatsSection = () => {
   ];
 
   return (
-    <section ref={ref} className="py-24 bg-gradient-to-b from-[#0A1628] to-[#0D1F36]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {stats.map((stat, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="relative group"
-            >
-              <div className="absolute -inset-px bg-gradient-to-b from-[#00D4FF]/20 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="relative bg-[#0A1628]/50 backdrop-blur-sm border border-white/10 rounded-xl p-8 hover:border-[#00D4FF]/30 transition-all duration-500">
-                <div className="flex items-start justify-between mb-6">
-                  <span className="text-6xl font-bold text-white/5">{stat.number}</span>
-                  <stat.icon className="text-[#00D4FF]" size={28} />
-                </div>
-                <div className="text-4xl font-bold text-white mb-2">{stat.value}</div>
-                <div className="text-gray-400 text-sm font-medium">{stat.label}</div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+    <section ref={ref} className="py-24 bg-gradient-to-b from-[#0A1628] to-[#0D1F36] relative overflow-hidden">
+      {/* Animated background elements */}
+      <motion.div
+        animate={{
+          scale: [1, 1.2, 1],
+          rotate: [0, 180, 360],
+          opacity: [0.03, 0.08, 0.03],
+        }}
+        transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+        className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#00D4FF] rounded-full blur-3xl"
+      />
+      <motion.div
+        animate={{
+          scale: [1, 1.3, 1],
+          rotate: [360, 180, 0],
+          opacity: [0.03, 0.08, 0.03],
+        }}
+        transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
+        className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#FFB020] rounded-full blur-3xl"
+      />
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+        <StaggerContainer staggerDelay={0.15}>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {stats.map((stat, index) => (
+              <StaggerItem key={index}>
+                <motion.div
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  className="relative group"
+                >
+                  <div className="absolute -inset-px bg-gradient-to-b from-[#00D4FF]/20 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="relative bg-[#0A1628]/50 backdrop-blur-sm border border-white/10 rounded-xl p-8 hover:border-[#00D4FF]/30 transition-all duration-500">
+                    <div className="flex items-start justify-between mb-6">
+                      <span className="text-6xl font-bold text-white/5">{stat.number}</span>
+                      <motion.div
+                        animate={{ rotate: [0, 10, -10, 0] }}
+                        transition={{ duration: 3, repeat: Infinity }}
+                      >
+                        <stat.icon className="text-[#00D4FF]" size={28} />
+                      </motion.div>
+                    </div>
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={isInView ? { scale: 1 } : {}}
+                      transition={{ duration: 0.6, delay: index * 0.15 + 0.3 }}
+                      className="text-4xl font-bold text-white mb-2"
+                    >
+                      {stat.value}
+                    </motion.div>
+                    <div className="text-gray-400 text-sm font-medium">{stat.label}</div>
+                  </div>
+                </motion.div>
+              </StaggerItem>
+            ))}
+          </div>
+        </StaggerContainer>
       </div>
     </section>
   );
@@ -288,52 +322,56 @@ const WhySOGIPSection = () => {
   return (
     <section ref={ref} className="py-32 bg-[#0D1F36] relative overflow-hidden">
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
-            backgroundSize: '40px 40px',
-          }}
-        />
-      </div>
+      <motion.div
+        animate={{ 
+          backgroundPosition: ['0% 0%', '100% 100%'],
+        }}
+        transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+        className="absolute inset-0 opacity-5"
+        style={{
+          backgroundImage:
+            'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
+          backgroundSize: '40px 40px',
+        }}
+      />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-20"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Why Choose <span className="text-[#00D4FF]">SOGIP</span>
-          </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            A world-class industrial ecosystem designed for sustainable energy development
-          </p>
-        </motion.div>
+        <FadeInUp>
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              Why Choose <span className="text-[#00D4FF]">SOGIP</span>
+            </h2>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              A world-class industrial ecosystem designed for sustainable energy development
+            </p>
+          </div>
+        </FadeInUp>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
-              className="group relative"
-            >
-              <div className="absolute -inset-px bg-gradient-to-r from-[#00D4FF] to-[#FFB020] rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="relative bg-[#0A1628] border border-white/10 rounded-2xl p-8 hover:border-transparent transition-all duration-500">
-                <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-[#00D4FF]/20 to-[#FFB020]/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
-                  <feature.icon className="text-[#00D4FF]" size={32} />
-                </div>
-                <h3 className="text-2xl font-bold text-white mb-4">{feature.title}</h3>
-                <p className="text-gray-400 leading-relaxed">{feature.description}</p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        <StaggerContainer staggerDelay={0.2}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {features.map((feature, index) => (
+              <StaggerItem key={index}>
+                <motion.div
+                  whileHover={{ scale: 1.03, rotate: index % 2 === 0 ? 1 : -1 }}
+                  className="group relative h-full"
+                >
+                  <div className="absolute -inset-px bg-gradient-to-r from-[#00D4FF] to-[#FFB020] rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="relative bg-[#0A1628] border border-white/10 rounded-2xl p-8 hover:border-transparent transition-all duration-500 h-full">
+                    <motion.div
+                      whileHover={{ scale: 1.2, rotate: 360 }}
+                      transition={{ duration: 0.6 }}
+                      className="w-16 h-16 rounded-xl bg-gradient-to-br from-[#00D4FF]/20 to-[#FFB020]/20 flex items-center justify-center mb-6"
+                    >
+                      <feature.icon className="text-[#00D4FF]" size={32} />
+                    </motion.div>
+                    <h3 className="text-2xl font-bold text-white mb-4">{feature.title}</h3>
+                    <p className="text-gray-400 leading-relaxed">{feature.description}</p>
+                  </div>
+                </motion.div>
+              </StaggerItem>
+            ))}
+          </div>
+        </StaggerContainer>
       </div>
     </section>
   );
@@ -366,67 +404,81 @@ const ProjectsSection = () => {
   ];
 
   return (
-    <section ref={ref} className="py-32 bg-gradient-to-b from-[#0D1F36] to-[#0A1628]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-20"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Anchor <span className="text-[#FFB020]">Projects</span>
-          </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Major investments driving economic growth and industrial development
-          </p>
-        </motion.div>
+    <section ref={ref} className="py-32 bg-gradient-to-b from-[#0D1F36] to-[#0A1628] relative overflow-hidden">
+      {/* Animated background orbs */}
+      <motion.div
+        animate={{
+          x: [0, 100, 0],
+          y: [0, 50, 0],
+          scale: [1, 1.2, 1],
+          opacity: [0.05, 0.1, 0.05],
+        }}
+        transition={{ duration: 15, repeat: Infinity }}
+        className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#00D4FF] rounded-full blur-3xl"
+      />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
-              whileHover={{ y: -10 }}
-              className="group relative overflow-hidden rounded-2xl"
-            >
-              <div className="aspect-[4/5] relative overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628] via-[#0A1628]/60 to-transparent" />
-              </div>
-              <div className="absolute bottom-0 left-0 right-0 p-8">
-                <div className="inline-block px-3 py-1 bg-[#00D4FF]/20 backdrop-blur-sm border border-[#00D4FF]/30 rounded-full text-[#00D4FF] text-xs font-semibold mb-4">
-                  {project.status}
-                </div>
-                <h3 className="text-2xl font-bold text-white mb-2">{project.title}</h3>
-                <p className="text-[#FFB020] text-xl font-semibold">{project.value}</p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+        <FadeInUp>
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              Anchor <span className="text-[#FFB020]">Projects</span>
+            </h2>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              Major investments driving economic growth and industrial development
+            </p>
+          </div>
+        </FadeInUp>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-center mt-12"
-        >
-          <Link to="/projects">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-white/5 backdrop-blur-sm text-white font-semibold rounded-lg border-2 border-white/20 hover:bg-white/10 hover:border-[#00D4FF]/50 transition-all duration-300"
-            >
-              View All Projects
-            </motion.button>
-          </Link>
-        </motion.div>
+        <StaggerContainer staggerDelay={0.2}>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {projects.map((project, index) => (
+              <StaggerItem key={index}>
+                <motion.div
+                  whileHover={{ y: -15, rotate: index % 2 === 0 ? 2 : -2 }}
+                  transition={{ type: 'spring', stiffness: 300 }}
+                  className="group relative overflow-hidden rounded-2xl"
+                >
+                  <div className="aspect-[4/5] relative overflow-hidden">
+                    <motion.img
+                      whileHover={{ scale: 1.15 }}
+                      transition={{ duration: 0.6 }}
+                      src={project.image}
+                      alt={project.title}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628] via-[#0A1628]/60 to-transparent" />
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 p-8">
+                    <motion.div
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={isInView ? { x: 0, opacity: 1 } : {}}
+                      transition={{ delay: index * 0.2 + 0.5 }}
+                      className="inline-block px-3 py-1 bg-[#00D4FF]/20 backdrop-blur-sm border border-[#00D4FF]/30 rounded-full text-[#00D4FF] text-xs font-semibold mb-4"
+                    >
+                      {project.status}
+                    </motion.div>
+                    <h3 className="text-2xl font-bold text-white mb-2">{project.title}</h3>
+                    <p className="text-[#FFB020] text-xl font-semibold">{project.value}</p>
+                  </div>
+                </motion.div>
+              </StaggerItem>
+            ))}
+          </div>
+        </StaggerContainer>
+
+        <FadeInUp delay={0.8}>
+          <div className="text-center mt-12">
+            <Link to="/projects">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-4 bg-white/5 backdrop-blur-sm text-white font-semibold rounded-lg border-2 border-white/20 hover:bg-white/10 hover:border-[#00D4FF]/50 transition-all duration-300"
+              >
+                View All Projects
+              </motion.button>
+            </Link>
+          </div>
+        </FadeInUp>
       </div>
     </section>
   );
