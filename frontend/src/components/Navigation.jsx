@@ -53,38 +53,41 @@ export const Navigation = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo - REDUCED GAP */}
-          <div className="mr-8">
+        <div className="flex items-center h-20">
+          {/* Logo - CLOSE TO NAV */}
+          <div className="mr-12">
             <Logo />
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-6">
-            {navLinks.map((link) => (
-              <button
-                key={link.path}
-                onClick={() => handleNavClick(link.path)}
-                className="relative group cursor-pointer"
-              >
-                <span
-                  className={`text-sm font-medium transition-colors duration-300 ${
-                    location.pathname === link.path
-                      ? 'text-[#00D4FF]'
-                      : 'text-gray-300 hover:text-white'
-                  }`}
+          <div className="hidden lg:flex items-center space-x-6 flex-1">
+            <div className="flex items-center space-x-6">
+              {navLinks.map((link) => (
+                <button
+                  key={link.path}
+                  onClick={() => handleNavClick(link.path)}
+                  className="relative group cursor-pointer"
                 >
-                  {link.label}
-                </span>
-                {location.pathname === link.path && (
-                  <motion.div
-                    layoutId="activeNav"
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-[#00D4FF] to-[#FFB020]"
-                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                  />
-                )}
-              </button>
-            ))}
+                  <span
+                    className={`text-sm font-medium transition-colors duration-300 ${
+                      location.pathname === link.path
+                        ? 'text-[#00D4FF]'
+                        : 'text-gray-300 hover:text-white'
+                    }`}
+                  >
+                    {link.label}
+                  </span>
+                  {location.pathname === link.path && (
+                    <motion.div
+                      layoutId="activeNav"
+                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-[#00D4FF] to-[#FFB020]"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                </button>
+              ))}
+            </div>
+            <div className="flex-1" />
             <button onClick={() => handleNavClick('/contact')}>
               <motion.div
                 whileHover={{ scale: 1.05 }}
