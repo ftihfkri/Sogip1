@@ -7,10 +7,11 @@ import { Footer } from "./components/Footer";
 import { Home } from "./pages/Home";
 import { About } from "./pages/About";
 import { WhySOGIP } from "./pages/WhySOGIP";
-import { MasterPlan } from "./pages/MasterPlan";
+import { MasterPlan } from "./pages/MasterPlanEnhanced";
 import { Contact } from "./pages/Contact";
 import { Projects } from "./pages/Projects";
 import { LogoShowcase } from "./pages/LogoShowcase";
+import { News } from "./pages/News";
 
 function App() {
   useEffect(() => {
@@ -28,6 +29,7 @@ function App() {
           <Route path="/master-plan" element={<MasterPlan />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/projects" element={<Projects />} />
+          <Route path="/news" element={<News />} />
           <Route path="/logo-showcase" element={<LogoShowcase />} />
         </Routes>
         <Footer />

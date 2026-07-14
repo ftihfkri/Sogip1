@@ -287,19 +287,19 @@ const LeadershipSection = () => {
 
   const leaders = [
     {
-      name: 'Datuk Haji Masiung Banah',
+      name: 'Datuk Ir. Shahelmey Yahya',
       role: 'Chairman, SOGDC',
-      image: 'https://ui-avatars.com/api/?name=Datuk+Masiung&size=400&background=00D4FF&color=fff',
+      image: 'https://ui-avatars.com/api/?name=Shahelmey+Yahya&size=400&background=00D4FF&color=fff&font-size=0.35',
     },
     {
-      name: 'Ir. Ahmad Zainal',
+      name: 'Mohd Azmir bin Datuk Ramli',
       role: 'Chief Executive Officer',
-      image: 'https://ui-avatars.com/api/?name=Ahmad+Zainal&size=400&background=FFB020&color=fff',
+      image: 'https://ui-avatars.com/api/?name=Mohd+Azmir&size=400&background=FFB020&color=fff&font-size=0.35',
     },
     {
-      name: 'Puan Siti Aminah',
-      role: 'Director of Operations',
-      image: 'https://ui-avatars.com/api/?name=Siti+Aminah&size=400&background=00D4FF&color=fff',
+      name: 'Datuk Dr Joachim Gunsalam',
+      role: 'Board Member & Deputy CM',
+      image: 'https://ui-avatars.com/api/?name=Joachim+Gunsalam&size=400&background=00D4FF&color=fff&font-size=0.35',
     },
   ];
 

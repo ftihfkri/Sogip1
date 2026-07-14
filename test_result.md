@@ -101,3 +101,120 @@
 #====================================================================================================
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
+
+user_problem_statement: "Test the SOGIP website for scroll-to-top functionality on navigation clicks, interactive master plan with zone markers, leadership team display, news page with 6 articles, and responsive design"
+
+frontend:
+  - task: "Scroll-to-top on navigation clicks"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/components/Navigation.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "Tested navigation from Home→About, About→Why SOGIP, Why SOGIP→Master Plan, and all other nav links. All navigation clicks correctly scroll to top (y=0). The handleNavClick function and useEffect with scrollToTop() are working perfectly."
+
+  - task: "Button scroll-to-top (Invest Now)"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/components/Navigation.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "Tested 'Invest Now' button navigation. Button correctly navigates to /contact page and scrolls to top (y=0)."
+
+  - task: "Mobile menu navigation and scroll-to-top"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/components/Navigation.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "Mobile menu (hamburger icon) opens correctly, navigation links work, and page scrolls to top after navigation. Menu closes automatically after navigation as expected."
+
+  - task: "Interactive Master Plan with zone markers"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/MasterPlanEnhanced.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "Found 6 interactive zone markers on the master plan map. Clicking on zone markers opens a detailed modal with zone information including: name, area, status, investment amount, completion date, and key features. Modal can be closed with Escape key or close button. Hover effects on zone markers are working."
+
+  - task: "Leadership team display on About page"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/About.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "All 3 leadership team members are displayed correctly: Datuk Ir. Shahelmey Yahya (Chairman, SOGDC), Mohd Azmir bin Datuk Ramli (Chief Executive Officer), and Datuk Dr Joachim Gunsalam (Board Member & Deputy CM). Names and roles are accurate."
+
+  - task: "News page with featured article and 6 news articles"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/News.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "News page displays featured article 'RM8.88 Billion Energy Hub Launched at SOGIP' and 6 news articles in grid layout. All articles have images, titles, dates, excerpts, and 'Read More' links. External links are configured with target='_blank' to open in new tabs. Hover effects on news cards are working."
+
+  - task: "Responsive design (mobile view)"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/App.js"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "Tested responsive design on 375px width mobile viewport. Mobile navigation menu (hamburger) is available and functional. All pages (Home, About, Master Plan, News) render correctly on mobile. Layout adapts properly to mobile screen size."
+
+  - task: "Overall UX - smooth scrolling and animations"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/utils/smoothScroll.js"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "Smooth scrolling behavior is working using Lenis library. Framer-motion animations are present and working. Luxury design elements including gradients, shadows, and glow effects are implemented throughout the site."
+
+metadata:
+  created_by: "testing_agent"
+  version: "1.0"
+  test_sequence: 1
+  run_ui: true
+  last_tested: "2025-07-14"
+
+test_plan:
+  current_focus:
+    - "All critical features tested and verified"
+  stuck_tasks: []
+  test_all: true
+  test_priority: "high_first"
+
+agent_communication:
+  - agent: "testing"
+    message: "Comprehensive testing completed for SOGIP website. All critical functionality verified and working correctly. The scroll-to-top bug fix is working perfectly across all navigation scenarios (desktop nav, mobile menu, CTA buttons). Interactive master plan with 6 zone markers and modals is functional. Leadership team and news page content are displaying correctly. Responsive design works on mobile devices. Minor CORS errors in console for web-vitals.js but these do not affect functionality. No critical issues found. Website is ready for production."

@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { Logo, LogoSimple } from './Logo';
+import { scrollToTop } from '../utils/scrollUtils';
 
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,12 +19,25 @@ export const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close mobile menu when location changes
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+    scrollToTop();
+  }, [location.pathname]);
+
+  const handleNavClick = (path) => {
+    navigate(path);
+    scrollToTop();
+    setIsMobileMenuOpen(false);
+  };
+
   const navLinks = [
     { path: '/', label: 'Home' },
     { path: '/about', label: 'About' },
     { path: '/why-sogip', label: 'Why SOGIP' },
     { path: '/master-plan', label: 'Master Plan' },
     { path: '/projects', label: 'Projects' },
+    { path: '/news', label: 'News' },
     { path: '/contact', label: 'Contact' },
   ];
 
@@ -45,10 +60,10 @@ export const Navigation = () => {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
             {navLinks.map((link) => (
-              <Link
+              <button
                 key={link.path}
-                to={link.path}
-                className="relative group"
+                onClick={() => handleNavClick(link.path)}
+                className="relative group cursor-pointer"
               >
                 <span
                   className={`text-sm font-medium transition-colors duration-300 ${
@@ -66,17 +81,17 @@ export const Navigation = () => {
                     transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                   />
                 )}
-              </Link>
+              </button>
             ))}
-            <Link to="/contact">
-              <motion.button
+            <button onClick={() => handleNavClick('/contact')}>
+              <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="px-6 py-2.5 bg-gradient-to-r from-[#00D4FF] to-[#0099CC] text-white text-sm font-semibold rounded-lg shadow-lg shadow-[#00D4FF]/20 hover:shadow-[#00D4FF]/40 transition-all duration-300"
               >
                 Invest Now
-              </motion.button>
-            </Link>
+              </motion.div>
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -100,24 +115,24 @@ export const Navigation = () => {
           >
             <div className="px-6 py-4 space-y-4">
               {navLinks.map((link) => (
-                <Link
+                <button
                   key={link.path}
-                  to={link.path}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className={`block text-base font-medium transition-colors ${
+                  onClick={() => handleNavClick(link.path)}
+                  className={`block w-full text-left text-base font-medium transition-colors ${
                     location.pathname === link.path
                       ? 'text-[#00D4FF]'
                       : 'text-gray-300'
                   }`}
                 >
                   {link.label}
-                </Link>
-              ))}
-              <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-                <button className="w-full px-6 py-3 bg-gradient-to-r from-[#00D4FF] to-[#0099CC] text-white font-semibold rounded-lg">
-                  Invest Now
                 </button>
-              </Link>
+              ))}
+              <button 
+                onClick={() => handleNavClick('/contact')} 
+                className="w-full px-6 py-3 bg-gradient-to-r from-[#00D4FF] to-[#0099CC] text-white font-semibold rounded-lg"
+              >
+                Invest Now
+              </button>
             </div>
           </motion.div>
         )}
