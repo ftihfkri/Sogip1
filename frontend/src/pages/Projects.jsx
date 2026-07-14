@@ -170,12 +170,12 @@ const AnchorProjectsSection = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628] via-[#0A1628]/70 to-transparent" />
                 <div className="absolute top-6 right-6">
                   <div
-                    className={`px-4 py-2 backdrop-blur-sm border rounded-full text-xs font-semibold ${
+                    className={`px-4 py-2 backdrop-blur-md border-2 rounded-full text-xs font-bold shadow-xl ${
                       project.status === 'Operational'
-                        ? 'bg-green-500/20 border-green-500/30 text-green-400'
+                        ? 'bg-green-500/90 border-green-300 text-white shadow-green-500/50'
                         : project.status === 'In Progress'
-                        ? 'bg-[#00D4FF]/20 border-[#00D4FF]/30 text-[#00D4FF]'
-                        : 'bg-[#FFB020]/20 border-[#FFB020]/30 text-[#FFB020]'
+                        ? 'bg-blue-500/90 border-blue-300 text-white shadow-blue-500/50'
+                        : 'bg-amber-500/90 border-amber-300 text-white shadow-amber-500/50'
                     }`}
                   >
                     {project.status}

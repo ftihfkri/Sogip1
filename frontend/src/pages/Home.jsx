@@ -12,6 +12,7 @@ import {
   Globe,
   CheckCircle2,
 } from 'lucide-react';
+import { HorizontalMarquee } from '../components/HorizontalMarquee';
 
 export const Home = () => {
   const heroRef = useRef(null);
@@ -69,10 +70,10 @@ export const Home = () => {
                 </span>
               </motion.div>
 
-              {/* Main Headline - Masked Line Reveal */}
-              <div className="mb-8 overflow-hidden">
+              {/* Main Headline - Masked Line Reveal - FIXED CUTOFF */}
+              <div className="mb-8">
                 {textRevealed && (
-                  <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight">
+                  <h1 className="text-5xl md:text-7xl font-bold text-white leading-[1.15]">
                     {words.map((word, idx) => (
                       <motion.span
                         key={idx}
@@ -83,7 +84,7 @@ export const Home = () => {
                           delay: idx * 0.1,
                           ease: [0.6, 0.05, 0.01, 0.9],
                         }}
-                        className="inline-block mr-4"
+                        className="inline-block mr-3 md:mr-4"
                       >
                         {word === 'Excellence' ? (
                           <span className="bg-gradient-to-r from-[#00D4FF] to-[#FFB020] bg-clip-text text-transparent">
@@ -161,6 +162,9 @@ export const Home = () => {
         </motion.div>
       </section>
 
+      {/* Horizontal Marquee Section */}
+      <MarqueeSection />
+
       {/* Stats Section - Numbered Manifesto Style */}
       <StatsSection />
 
@@ -173,6 +177,38 @@ export const Home = () => {
       {/* CTA Section */}
       <CTASection />
     </div>
+  );
+};
+
+// Marquee Section - Horizontal Scroll
+const MarqueeSection = () => {
+  const phrases = [
+    'World-Class Infrastructure',
+    'Strategic Location',
+    'RM30B+ Investments',
+    'Deep Water Port',
+    'Tax Incentives',
+    'Green Technology',
+    'Regional Energy Hub',
+    '15,000+ Jobs Created',
+  ];
+
+  return (
+    <section className="py-12 bg-[#0A1628] border-y border-white/5">
+      <HorizontalMarquee speed={40}>
+        {phrases.map((phrase, index) => (
+          <div
+            key={index}
+            className="flex items-center mx-8"
+          >
+            <span className="text-2xl md:text-3xl font-bold text-white/80 whitespace-nowrap">
+              {phrase}
+            </span>
+            <div className="w-2 h-2 rounded-full bg-[#00D4FF] mx-8" />
+          </div>
+        ))}
+      </HorizontalMarquee>
+    </section>
   );
 };
 

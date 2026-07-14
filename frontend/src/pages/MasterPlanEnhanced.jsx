@@ -200,15 +200,19 @@ const InteractiveMapSection = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Interactive <span className="text-[#00D4FF]">Site Map</span>
           </h2>
-          <p className="text-xl text-gray-400 mb-4">
-            Click on zones to explore detailed information
+          <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-4">
+            <strong>Click on the numbered zones below</strong> to explore detailed information about each development area
+          </p>
+          <p className="text-base text-gray-400 max-w-3xl mx-auto mb-6">
+            SOGIP spans 5,539 acres with 6 specialized zones for LNG, petrochemical, refinery, utilities, and support facilities
           </p>
           <motion.div
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
-            className="text-[#FFB020] text-sm"
+            className="text-[#FFB020] text-base font-semibold mt-4 flex items-center justify-center space-x-2"
           >
-            👇 Interactive zones below
+            <span>👆</span>
+            <span>Click any numbered circle below for zone details</span>
           </motion.div>
         </motion.div>
 
@@ -294,12 +298,12 @@ const InteractiveMapSection = () => {
                     style={{ backgroundColor: zone.color }}
                   />
                   
-                  {/* Main marker */}
+                  {/* Main marker - LARGER SIZE */}
                   <motion.div
                     whileHover={{ scale: 1.3, rotate: 360 }}
                     whileTap={{ scale: 0.9 }}
                     transition={{ type: 'spring', stiffness: 300 }}
-                    className="relative w-12 h-12 rounded-full border-4 border-[#0A1628] shadow-2xl flex items-center justify-center"
+                    className="relative w-16 h-16 rounded-full border-4 border-[#0A1628] shadow-2xl flex items-center justify-center cursor-pointer"
                     style={{ 
                       backgroundColor: zone.color,
                       boxShadow: `0 0 30px ${zone.color}80, 0 0 60px ${zone.color}40`,
@@ -308,7 +312,7 @@ const InteractiveMapSection = () => {
                     <motion.div
                       animate={{ rotate: 360 }}
                       transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
-                      className="text-white font-bold text-sm"
+                      className="text-white font-bold text-lg"
                     >
                       {zone.id}
                     </motion.div>
