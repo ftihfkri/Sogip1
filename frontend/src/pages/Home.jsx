@@ -123,7 +123,7 @@ export const Home = () => {
                     whileTap={{ scale: 0.95 }}
                     className="group w-full min-h-12 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#00D4FF] to-[#0099CC] text-white font-semibold rounded-lg shadow-2xl shadow-[#00D4FF]/30 hover:shadow-[#00D4FF]/50 transition-all duration-300 flex items-center justify-center space-x-2"
                   >
-                    <span>Explore Opportunities</span>
+                    <span>Contact SOGDC</span>
                     <ArrowRight
                       size={20}
                       className="group-hover:translate-x-1 transition-transform"
@@ -514,9 +514,9 @@ const CTASection = () => {
           transition={{ duration: 0.8 }}
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
-            Ready to Invest in{' '}
+            Need Current SOGIP{' '}
             <span className="bg-gradient-to-r from-[#00D4FF] to-[#FFB020] bg-clip-text text-transparent">
-              Sabah's Future
+              Information
             </span>
             ?
           </h2>

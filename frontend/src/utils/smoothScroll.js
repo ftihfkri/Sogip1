@@ -1,6 +1,11 @@
 import Lenis from 'lenis';
 
+let lenisInstance = null;
+let animationFrameId = null;
+
 export const initSmoothScroll = () => {
+  if (lenisInstance) return lenisInstance;
+
   const lenis = new Lenis({
     duration: 1.2,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -13,12 +18,24 @@ export const initSmoothScroll = () => {
     infinite: false,
   });
 
+  lenisInstance = lenis;
+
   function raf(time) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
+    if (!lenisInstance) return;
+    lenisInstance.raf(time);
+    animationFrameId = requestAnimationFrame(raf);
   }
 
-  requestAnimationFrame(raf);
+  animationFrameId = requestAnimationFrame(raf);
 
-  return lenis;
+  return lenisInstance;
+};
+
+export const getSmoothScroll = () => lenisInstance;
+
+export const destroySmoothScroll = () => {
+  if (animationFrameId) cancelAnimationFrame(animationFrameId);
+  lenisInstance?.destroy();
+  animationFrameId = null;
+  lenisInstance = null;
 };

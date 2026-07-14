@@ -22,7 +22,6 @@ export const Navigation = () => {
   // Close mobile menu when location changes
   useEffect(() => {
     setIsMobileMenuOpen(false);
-    scrollToTop();
   }, [location.pathname]);
 
   useEffect(() => {
@@ -43,9 +42,14 @@ export const Navigation = () => {
   }, [isMobileMenuOpen]);
 
   const handleNavClick = (path) => {
-    navigate(path);
-    scrollToTop();
     setIsMobileMenuOpen(false);
+
+    if (location.pathname === path) {
+      scrollToTop('auto');
+      return;
+    }
+
+    navigate(path);
   };
 
   const navLinks = [
@@ -84,6 +88,7 @@ export const Navigation = () => {
                 <button
                   key={link.path}
                   onClick={() => handleNavClick(link.path)}
+                  aria-current={location.pathname === link.path ? 'page' : undefined}
                   className="relative group cursor-pointer min-h-11 px-1 flex items-center"
                 >
                   <span
@@ -112,7 +117,7 @@ export const Navigation = () => {
               whileTap={{ scale: 0.95 }}
               className="min-h-11 px-5 py-2 bg-gradient-to-r from-[#00D4FF] to-[#0099CC] text-white text-sm font-semibold rounded-lg shadow-lg shadow-[#00D4FF]/20 hover:shadow-[#00D4FF]/40 transition-all duration-300 whitespace-nowrap"
             >
-              Invest Now
+              Contact SOGDC
             </motion.button>
           </div>
 
@@ -144,6 +149,7 @@ export const Navigation = () => {
                 <button
                   key={link.path}
                   onClick={() => handleNavClick(link.path)}
+                  aria-current={location.pathname === link.path ? 'page' : undefined}
                   className={`flex items-center w-full min-h-11 px-3 rounded-lg text-left text-base font-medium transition-colors ${
                     location.pathname === link.path
                       ? 'text-[#00D4FF] bg-[#00D4FF]/10'
@@ -157,7 +163,7 @@ export const Navigation = () => {
                 onClick={() => handleNavClick('/contact')} 
                 className="w-full min-h-12 px-6 py-3 bg-gradient-to-r from-[#00D4FF] to-[#0099CC] text-white font-semibold rounded-lg"
               >
-                Invest Now
+                Contact SOGDC
               </button>
             </div>
           </motion.div>

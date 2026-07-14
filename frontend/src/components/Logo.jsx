@@ -1,12 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { scrollToTop } from '../utils/scrollUtils';
 
 export const Logo = ({ variant = 'header' }) => {
   const isLarge = variant === 'large';
   
   return (
-    <Link to="/" aria-label="SOGIP home" className="inline-block max-w-[10.5rem] sm:max-w-none group">
+    <Link to="/" onClick={() => scrollToTop('auto')} aria-label="SOGIP home" className="inline-block max-w-[10.5rem] sm:max-w-none group">
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}

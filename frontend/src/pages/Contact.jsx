@@ -30,9 +30,9 @@ const HeroSection = () => {
             Get In Touch
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 sm:mb-6">
-            Let's Discuss Your{' '}
+            Contact{' '}
             <span className="bg-gradient-to-r from-[#00D4FF] to-[#FFB020] bg-clip-text text-transparent">
-              Investment
+              SOGDC
             </span>
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-4xl mx-auto leading-relaxed">

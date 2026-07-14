@@ -60,10 +60,10 @@ const HeroSection = () => {
           className="text-center"
         >
           <div className="inline-block px-4 py-2 bg-[#00D4FF]/10 border border-[#00D4FF]/30 rounded-full text-[#00D4FF] text-sm font-semibold mb-6">
-            Investment Advantages
+            Published Site Overview
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 sm:mb-6">
-            Why Invest in{' '}
+            Why{' '}
             <span className="bg-gradient-to-r from-[#00D4FF] to-[#FFB020] bg-clip-text text-transparent">
               SOGIP
             </span>

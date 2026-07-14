@@ -1,8 +1,22 @@
-// Smooth scroll to top utility
-export const scrollToTop = (behavior = 'smooth') => {
+import { getSmoothScroll } from './smoothScroll';
+
+// Scroll through Lenis when active so its internal target stays in sync.
+export const scrollToTop = (behavior = 'auto') => {
+  const lenis = getSmoothScroll();
+
+  if (lenis) {
+    if (behavior === 'smooth') {
+      lenis.scrollTo(0, { duration: 0.6, force: true });
+    } else {
+      lenis.scrollTo(0, { immediate: true, force: true });
+    }
+    return;
+  }
+
   window.scrollTo({
     top: 0,
-    behavior: behavior
+    left: 0,
+    behavior,
   });
 };
 
