@@ -6,7 +6,7 @@ export const Logo = ({ variant = 'header' }) => {
   const isLarge = variant === 'large';
   
   return (
-    <Link to="/" className="inline-block group">
+    <Link to="/" aria-label="SOGIP home" className="inline-block max-w-[10.5rem] sm:max-w-none group">
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -30,7 +30,7 @@ export const Logo = ({ variant = 'header' }) => {
         {/* Main Logo Container - REDUCED SIZE */}
         <div
           className={`relative rounded-lg overflow-hidden ${
-            isLarge ? 'p-6' : 'p-2'
+            isLarge ? 'p-4 sm:p-6' : 'p-2'
           }`}
           style={{
             background: 'linear-gradient(135deg, #5A1A1A 0%, #3D0E0E 50%, #2A0808 100%)',
@@ -83,7 +83,7 @@ export const Logo = ({ variant = 'header' }) => {
               whileHover={{ scale: 1.03 }}
               transition={{ type: 'spring', stiffness: 400 }}
               className={`font-bold tracking-wider ${
-                isLarge ? 'text-4xl mb-2' : 'text-lg mb-0.5'
+                isLarge ? 'text-3xl sm:text-4xl mb-2' : 'text-base sm:text-lg mb-0.5'
               }`}
             >
               {/* Main Text with Shimmer */}
@@ -138,7 +138,7 @@ export const Logo = ({ variant = 'header' }) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
               className={`${
-                isLarge ? 'text-[10px] tracking-wide' : 'text-[7px] tracking-wider'
+                isLarge ? 'text-[9px] sm:text-[10px] tracking-wide' : 'text-[6px] sm:text-[7px] tracking-wider'
               } font-medium text-gray-300/90 uppercase`}
             >
               Sipitang Oil & Gas Industrial Park

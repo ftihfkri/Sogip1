@@ -8,11 +8,11 @@ export const About = () => {
   const isHeroInView = useInView(heroRef, { once: true });
 
   return (
-    <div className="bg-[#0A1628] min-h-screen pt-20">
+    <div className="bg-[#0A1628] min-h-[100dvh] pt-20">
       {/* Hero Section */}
       <section
         ref={heroRef}
-        className="relative py-32 overflow-hidden"
+        className="relative py-16 sm:py-20 lg:py-28 overflow-hidden"
       >
         <div className="absolute inset-0 opacity-10">
           <div
@@ -25,23 +25,23 @@ export const About = () => {
           />
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
-            className="text-center mb-16"
+            className="text-center mb-10 sm:mb-16"
           >
             <div className="inline-block px-4 py-2 bg-[#00D4FF]/10 border border-[#00D4FF]/30 rounded-full text-[#00D4FF] text-sm font-semibold mb-6">
               About SOGIP
             </div>
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 sm:mb-6">
               Pioneering Sabah's{' '}
               <span className="bg-gradient-to-r from-[#00D4FF] to-[#FFB020] bg-clip-text text-transparent">
                 Energy Future
               </span>
             </h1>
-            <p className="text-xl text-gray-400 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-4xl mx-auto leading-relaxed">
               SOGIP is Malaysia's flagship integrated oil and gas industrial park,
               strategically developed to position Sabah as a regional energy hub while
               driving sustainable economic growth and job creation.
@@ -102,17 +102,17 @@ const HistorySection = () => {
   ];
 
   return (
-    <section ref={ref} className="py-32 bg-gradient-to-b from-[#0A1628] to-[#0D1F36]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <section ref={ref} className="py-16 sm:py-20 lg:py-32 bg-gradient-to-b from-[#0A1628] to-[#0D1F36]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          className="text-center mb-12 sm:mb-16 lg:mb-20">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
             Our <span className="text-[#FFB020]">Journey</span>
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
             From vision to reality - building Sabah's energy infrastructure
           </p>
         </motion.div>
@@ -121,7 +121,7 @@ const HistorySection = () => {
           {/* Timeline Line */}
           <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[#00D4FF] via-[#FFB020] to-transparent" />
 
-          <div className="space-y-16">
+          <div className="space-y-12 sm:space-y-16">
             {timeline.map((item, index) => (
               <motion.div
                 key={index}
@@ -134,13 +134,13 @@ const HistorySection = () => {
                     : 'md:flex-row-reverse'
                 }`}
               >
-                <div className={`w-full md:w-5/12 ${
+                <div className={`w-full pl-16 md:pl-0 md:w-5/12 ${
                   index % 2 === 0 ? 'md:text-right md:pr-16' : 'md:text-left md:pl-16'
                 }`}>
                   <div className="inline-block px-4 py-2 bg-gradient-to-r from-[#00D4FF]/20 to-[#FFB020]/20 border border-[#00D4FF]/30 rounded-full text-[#00D4FF] text-sm font-bold mb-4">
                     {item.year}
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-3">{item.title}</h3>
+                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-3">{item.title}</h3>
                   <p className="text-gray-400 leading-relaxed">{item.description}</p>
                 </div>
 
@@ -161,12 +161,12 @@ const VisionMissionSection = () => {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section ref={ref} className="py-32 bg-[#0D1F36] relative overflow-hidden">
-      <div className="absolute top-1/4 right-0 w-96 h-96 bg-[#00D4FF]/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-[#FFB020]/5 rounded-full blur-3xl" />
+    <section ref={ref} className="py-16 sm:py-20 lg:py-32 bg-[#0D1F36] relative overflow-hidden">
+      <div className="absolute top-1/4 right-0 w-72 h-72 sm:w-96 sm:h-96 bg-[#00D4FF]/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-1/4 left-0 w-72 h-72 sm:w-96 sm:h-96 bg-[#FFB020]/5 rounded-full blur-3xl" />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -174,12 +174,12 @@ const VisionMissionSection = () => {
             className="relative group"
           >
             <div className="absolute -inset-px bg-gradient-to-r from-[#00D4FF] to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <div className="relative bg-[#0A1628]/50 backdrop-blur-sm border border-white/10 rounded-2xl p-10">
+            <div className="relative bg-[#0A1628]/50 backdrop-blur-sm border border-white/10 rounded-2xl p-6 sm:p-8 lg:p-10 h-full">
               <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-[#00D4FF]/20 to-[#00D4FF]/5 flex items-center justify-center mb-6">
                 <Eye className="text-[#00D4FF]" size={32} />
               </div>
-              <h2 className="text-3xl font-bold text-white mb-6">Our Vision</h2>
-              <p className="text-gray-400 text-lg leading-relaxed">
+              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 sm:mb-6">Our Vision</h2>
+              <p className="text-gray-400 text-base sm:text-lg leading-relaxed">
                 To establish SOGIP as Southeast Asia's premier integrated oil and gas
                 industrial park, driving sustainable economic transformation and positioning
                 Sabah as a global energy hub.
@@ -194,12 +194,12 @@ const VisionMissionSection = () => {
             className="relative group"
           >
             <div className="absolute -inset-px bg-gradient-to-r from-[#FFB020] to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <div className="relative bg-[#0A1628]/50 backdrop-blur-sm border border-white/10 rounded-2xl p-10">
+            <div className="relative bg-[#0A1628]/50 backdrop-blur-sm border border-white/10 rounded-2xl p-6 sm:p-8 lg:p-10 h-full">
               <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-[#FFB020]/20 to-[#FFB020]/5 flex items-center justify-center mb-6">
                 <Target className="text-[#FFB020]" size={32} />
               </div>
-              <h2 className="text-3xl font-bold text-white mb-6">Our Mission</h2>
-              <p className="text-gray-400 text-lg leading-relaxed">
+              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 sm:mb-6">Our Mission</h2>
+              <p className="text-gray-400 text-base sm:text-lg leading-relaxed">
                 To attract world-class investments, develop state-of-the-art infrastructure,
                 and create sustainable employment opportunities while maintaining environmental
                 stewardship and community engagement.
@@ -218,9 +218,9 @@ const SOGDCSection = () => {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section ref={ref} className="py-32 bg-gradient-to-b from-[#0D1F36] to-[#0A1628]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+    <section ref={ref} className="py-16 sm:py-20 lg:py-32 bg-gradient-to-b from-[#0D1F36] to-[#0A1628]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -229,11 +229,11 @@ const SOGDCSection = () => {
             <div className="inline-block px-4 py-2 bg-[#00D4FF]/10 border border-[#00D4FF]/30 rounded-full text-[#00D4FF] text-sm font-semibold mb-6">
               Managing Authority
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
               Sabah Oil & Gas Development{' '}
               <span className="text-[#00D4FF]">Corporation</span>
             </h2>
-            <p className="text-gray-400 text-lg leading-relaxed mb-6">
+            <p className="text-gray-400 text-base sm:text-lg leading-relaxed mb-6">
               SOGDC is the dedicated state agency responsible for the planning, development,
               and management of SOGIP. Established to maximize Sabah's participation in the
               oil and gas industry, SOGDC works closely with federal agencies, industry
@@ -270,6 +270,9 @@ const SOGDCSection = () => {
               <img
                 src="https://images.unsplash.com/photo-1562892302-97faedd66f1c?w=800&q=80"
                 alt="SOGDC"
+                width="800"
+                height="600"
+                loading="lazy"
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628] via-transparent to-transparent" />
@@ -305,23 +308,23 @@ const LeadershipSection = () => {
   ];
 
   return (
-    <section ref={ref} className="py-32 bg-[#0A1628]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <section ref={ref} className="py-16 sm:py-20 lg:py-32 bg-[#0A1628]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-20"
+          className="text-center mb-12 sm:mb-16 lg:mb-20"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
             Leadership <span className="text-[#00D4FF]">Team</span>
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
             Experienced professionals driving SOGIP's vision forward
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
           {leaders.map((leader, index) => (
             <motion.div
               key={index}
@@ -337,6 +340,9 @@ const LeadershipSection = () => {
                   <img
                     src={leader.image}
                     alt={leader.name}
+                    width="400"
+                    height="400"
+                    loading="lazy"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                 </div>
@@ -380,20 +386,20 @@ const ValuesSection = () => {
   ];
 
   return (
-    <section ref={ref} className="py-32 bg-gradient-to-b from-[#0A1628] to-[#0D1F36]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <section ref={ref} className="py-16 sm:py-20 lg:py-32 bg-gradient-to-b from-[#0A1628] to-[#0D1F36]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-20"
+          className="text-center mb-12 sm:mb-16 lg:mb-20"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
             Our Core <span className="text-[#FFB020]">Values</span>
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {values.map((value, index) => (
             <motion.div
               key={index}

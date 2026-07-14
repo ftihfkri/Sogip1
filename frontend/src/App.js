@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { MotionConfig } from "framer-motion";
 import "@/App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { initSmoothScroll } from "./utils/smoothScroll";
@@ -19,22 +20,24 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Navigation />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/why-sogip" element={<WhySOGIP />} />
-          <Route path="/master-plan" element={<MasterPlan />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/news" element={<News />} />
-          <Route path="/logo-showcase" element={<LogoShowcase />} />
-        </Routes>
-        <Footer />
-      </BrowserRouter>
-    </div>
+    <MotionConfig reducedMotion="user">
+      <div className="App">
+        <BrowserRouter>
+          <Navigation />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/why-sogip" element={<WhySOGIP />} />
+            <Route path="/master-plan" element={<MasterPlan />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/news" element={<News />} />
+            <Route path="/logo-showcase" element={<LogoShowcase />} />
+          </Routes>
+          <Footer />
+        </BrowserRouter>
+      </div>
+    </MotionConfig>
   );
 }
 

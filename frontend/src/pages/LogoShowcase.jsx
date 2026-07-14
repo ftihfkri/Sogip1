@@ -1,27 +1,28 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Logo, LogoSimple } from '../components/Logo';
+import { Check, Sparkles, X } from 'lucide-react';
+import { Logo } from '../components/Logo';
 
 export const LogoShowcase = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0A1628] via-[#0D1F36] to-[#0A1628] pt-32 pb-20">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <div className="min-h-[100dvh] bg-gradient-to-br from-[#0A1628] via-[#0D1F36] to-[#0A1628] pt-28 sm:pt-32 pb-14 sm:pb-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-20"
+          className="text-center mb-12 sm:mb-20"
         >
-          <h1 className="text-5xl font-bold text-white mb-6">
+          <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4 sm:mb-6">
             SOGIP <span className="text-[#00D4FF]">Logo Showcase</span>
           </h1>
-          <p className="text-xl text-gray-400">
+          <p className="text-base sm:text-xl text-gray-400">
             Luxury animated logo with premium effects
           </p>
         </motion.div>
 
         {/* Large Hero Logo */}
-        <div className="mb-32">
+        <div className="mb-16 sm:mb-24 lg:mb-32">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -44,8 +45,8 @@ export const LogoShowcase = () => {
             transition={{ delay: 1, duration: 0.8 }}
             className="mt-12 max-w-3xl mx-auto"
           >
-            <div className="bg-[#0D1F36]/50 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
-              <h3 className="text-xl font-bold text-white mb-4">✨ Premium Features:</h3>
+            <div className="bg-[#0D1F36]/50 backdrop-blur-sm border border-white/10 rounded-2xl p-5 sm:p-8">
+              <h3 className="text-lg sm:text-xl font-bold text-white mb-4 flex items-center gap-2"><Sparkles size={20} /> Premium Features:</h3>
               <ul className="space-y-3 text-gray-300">
                 <li className="flex items-start space-x-3">
                   <span className="text-[#00D4FF] mt-1">•</span>
@@ -81,7 +82,7 @@ export const LogoShowcase = () => {
         </div>
 
         {/* Navigation Version */}
-        <div className="mb-32">
+        <div className="mb-16 sm:mb-24 lg:mb-32">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -94,7 +95,7 @@ export const LogoShowcase = () => {
             </p>
           </motion.div>
 
-          <div className="bg-[#0A1628]/50 backdrop-blur-sm border border-white/10 rounded-2xl p-12">
+          <div className="bg-[#0A1628]/50 backdrop-blur-sm border border-white/10 rounded-2xl p-6 sm:p-12">
             <div className="flex justify-center">
               <Logo />
             </div>
@@ -102,7 +103,7 @@ export const LogoShowcase = () => {
         </div>
 
         {/* Dark Background Comparison */}
-        <div className="mb-32">
+        <div className="mb-16 sm:mb-24 lg:mb-32">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -117,22 +118,22 @@ export const LogoShowcase = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Pure Black */}
-            <div className="bg-black rounded-2xl p-12 flex items-center justify-center">
+            <div className="bg-black rounded-2xl p-6 sm:p-12 flex items-center justify-center">
               <Logo />
             </div>
 
             {/* Light Background */}
-            <div className="bg-gray-100 rounded-2xl p-12 flex items-center justify-center">
+            <div className="bg-gray-100 rounded-2xl p-6 sm:p-12 flex items-center justify-center">
               <Logo />
             </div>
 
             {/* Gradient Blue */}
-            <div className="bg-gradient-to-br from-[#00D4FF]/20 to-[#0099CC]/20 rounded-2xl p-12 flex items-center justify-center">
+            <div className="bg-gradient-to-br from-[#00D4FF]/20 to-[#0099CC]/20 rounded-2xl p-6 sm:p-12 flex items-center justify-center">
               <Logo />
             </div>
 
             {/* Gradient Gold */}
-            <div className="bg-gradient-to-br from-[#FFB020]/20 to-[#FF8C00]/20 rounded-2xl p-12 flex items-center justify-center">
+            <div className="bg-gradient-to-br from-[#FFB020]/20 to-[#FF8C00]/20 rounded-2xl p-6 sm:p-12 flex items-center justify-center">
               <Logo />
             </div>
           </div>
@@ -152,7 +153,7 @@ export const LogoShowcase = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 min-[360px]:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {[
               { name: 'Maroon Base', color: '#5A1A1A', description: 'Primary background' },
               { name: 'Electric Blue', color: '#00D4FF', description: 'Accent gradient' },
@@ -164,7 +165,7 @@ export const LogoShowcase = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1 + index * 0.1, duration: 0.6 }}
-                className="bg-[#0D1F36] border border-white/10 rounded-xl p-6 text-center"
+                className="bg-[#0D1F36] border border-white/10 rounded-xl p-4 sm:p-6 text-center"
               >
                 <div
                   className="w-full aspect-square rounded-lg mb-4 shadow-xl"
@@ -188,7 +189,7 @@ export const LogoShowcase = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.4, duration: 0.8 }}
-          className="mt-32 bg-gradient-to-br from-[#00D4FF]/10 to-[#FFB020]/10 border border-white/20 rounded-3xl p-12"
+          className="mt-16 sm:mt-24 lg:mt-32 bg-gradient-to-br from-[#00D4FF]/10 to-[#FFB020]/10 border border-white/20 rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-12"
         >
           <h2 className="text-3xl font-bold text-white mb-8 text-center">
             Usage Guidelines
@@ -196,7 +197,7 @@ export const LogoShowcase = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
               <h3 className="text-xl font-bold text-white mb-4 flex items-center">
-                <span className="text-green-400 text-2xl mr-3">✓</span> Do
+                <Check aria-hidden="true" className="text-green-400 mr-3" size={24} /> Do
               </h3>
               <ul className="space-y-3 text-gray-300">
                 <li>• Use on dark backgrounds for maximum impact</li>
@@ -208,7 +209,7 @@ export const LogoShowcase = () => {
             </div>
             <div>
               <h3 className="text-xl font-bold text-white mb-4 flex items-center">
-                <span className="text-red-400 text-2xl mr-3">✗</span> Don't
+                <X aria-hidden="true" className="text-red-400 mr-3" size={24} /> Don't
               </h3>
               <ul className="space-y-3 text-gray-300">
                 <li>• Distort or stretch the logo</li>

@@ -29,15 +29,16 @@ export const Home = () => {
   const [textRevealed, setTextRevealed] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => setTextRevealed(true), 300);
+    const revealTimer = window.setTimeout(() => setTextRevealed(true), 300);
+    return () => window.clearTimeout(revealTimer);
   }, []);
 
   const words = "Sabah's Gateway to Energy Excellence".split(' ');
 
   return (
-    <div className="bg-[#0A1628] min-h-screen">
+    <div className="bg-[#0A1628] min-h-[100dvh]">
       {/* Hero Section - Kinetic with Masked Reveal */}
-      <section ref={heroRef} className="relative h-screen overflow-hidden">
+      <section ref={heroRef} className="relative min-h-[100svh] min-h-[100dvh] overflow-hidden">
         {/* Background Image with Parallax */}
         <motion.div style={{ y }} className="absolute inset-0">
           <div
@@ -54,27 +55,27 @@ export const Home = () => {
         {/* Hero Content */}
         <motion.div
           style={{ opacity }}
-          className="relative z-10 h-full flex items-center"
+          className="relative z-10 min-h-[100svh] min-h-[100dvh] flex items-center pt-24 pb-20 sm:pt-28 sm:pb-24"
         >
-          <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div className="max-w-3xl">
               {/* Overline with Animation */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="flex items-center space-x-3 mb-8"
+                className="flex items-center gap-3 mb-5 sm:mb-8"
               >
-                <div className="h-px w-12 bg-gradient-to-r from-[#00D4FF] to-transparent" />
-                <span className="text-[#00D4FF] text-sm font-semibold tracking-wider uppercase">
+                <div className="h-px w-8 sm:w-12 flex-shrink-0 bg-gradient-to-r from-[#00D4FF] to-transparent" />
+                <span className="text-[#00D4FF] text-xs sm:text-sm font-semibold tracking-wider uppercase">
                   Sabah Oil & Gas Industrial Park
                 </span>
               </motion.div>
 
               {/* Main Headline - Masked Line Reveal - FIXED CUTOFF */}
-              <div className="mb-8">
+              <div className="mb-6 sm:mb-8">
                 {textRevealed && (
-                  <h1 className="text-5xl md:text-7xl font-bold text-white leading-[1.15]">
+                  <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white leading-[1.12] sm:leading-[1.15]">
                     {words.map((word, idx) => (
                       <motion.span
                         key={idx}
@@ -85,7 +86,7 @@ export const Home = () => {
                           delay: idx * 0.1,
                           ease: [0.6, 0.05, 0.01, 0.9],
                         }}
-                        className="inline-block mr-3 md:mr-4"
+                        className="inline-block mr-2 sm:mr-3 md:mr-4"
                       >
                         {word === 'Excellence' ? (
                           <span className="bg-gradient-to-r from-[#00D4FF] to-[#FFB020] bg-clip-text text-transparent">
@@ -105,7 +106,7 @@ export const Home = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 1 }}
-                className="text-xl text-gray-300 mb-10 leading-relaxed max-w-2xl"
+                className="text-base sm:text-lg md:text-xl text-gray-300 mb-8 sm:mb-10 leading-relaxed max-w-2xl"
               >
                 Malaysia's premier integrated oil and gas industrial park,
                 strategically positioned in the Sabah-Brunei-Labuan triangle to
@@ -119,11 +120,11 @@ export const Home = () => {
                 transition={{ duration: 0.8, delay: 1.2 }}
                 className="flex flex-col sm:flex-row gap-4"
               >
-                <Link to="/contact">
+                <Link to="/contact" className="w-full sm:w-auto">
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="group px-8 py-4 bg-gradient-to-r from-[#00D4FF] to-[#0099CC] text-white font-semibold rounded-lg shadow-2xl shadow-[#00D4FF]/30 hover:shadow-[#00D4FF]/50 transition-all duration-300 flex items-center justify-center space-x-2"
+                    className="group w-full min-h-12 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#00D4FF] to-[#0099CC] text-white font-semibold rounded-lg shadow-2xl shadow-[#00D4FF]/30 hover:shadow-[#00D4FF]/50 transition-all duration-300 flex items-center justify-center space-x-2"
                   >
                     <span>Explore Opportunities</span>
                     <ArrowRight
@@ -132,11 +133,11 @@ export const Home = () => {
                     />
                   </motion.button>
                 </Link>
-                <Link to="/master-plan">
+                <Link to="/master-plan" className="w-full sm:w-auto">
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-lg border-2 border-white/20 hover:bg-white/20 transition-all duration-300"
+                    className="w-full min-h-12 px-6 sm:px-8 py-3 sm:py-4 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-lg border-2 border-white/20 hover:bg-white/20 transition-all duration-300"
                   >
                     View Master Plan
                   </motion.button>
@@ -151,7 +152,7 @@ export const Home = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2, duration: 1 }}
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
+          className="hidden sm:block absolute bottom-8 lg:bottom-10 left-1/2 transform -translate-x-1/2"
         >
           <motion.div
             animate={{ y: [0, 10, 0] }}
@@ -195,17 +196,17 @@ const MarqueeSection = () => {
   ];
 
   return (
-    <section className="py-12 bg-[#0A1628] border-y border-white/5">
+    <section className="py-8 sm:py-12 bg-[#0A1628] border-y border-white/5">
       <HorizontalMarquee speed={40}>
         {phrases.map((phrase, index) => (
           <div
             key={index}
-            className="flex items-center mx-8"
+            className="flex items-center mx-4 sm:mx-8"
           >
-            <span className="text-2xl md:text-3xl font-bold text-white/80 whitespace-nowrap">
+            <span className="text-lg sm:text-2xl md:text-3xl font-bold text-white/80 whitespace-nowrap">
               {phrase}
             </span>
-            <div className="w-2 h-2 rounded-full bg-[#00D4FF] mx-8" />
+            <div className="w-2 h-2 rounded-full bg-[#00D4FF] mx-4 sm:mx-8" />
           </div>
         ))}
       </HorizontalMarquee>
@@ -226,7 +227,7 @@ const StatsSection = () => {
   ];
 
   return (
-    <section ref={ref} className="py-24 bg-gradient-to-b from-[#0A1628] to-[#0D1F36] relative overflow-hidden">
+    <section ref={ref} className="py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-[#0A1628] to-[#0D1F36] relative overflow-hidden">
       {/* Animated background elements */}
       <motion.div
         animate={{
@@ -235,7 +236,7 @@ const StatsSection = () => {
           opacity: [0.03, 0.08, 0.03],
         }}
         transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-        className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#00D4FF] rounded-full blur-3xl"
+        className="absolute top-1/4 left-1/4 w-72 h-72 sm:w-96 sm:h-96 bg-[#00D4FF] rounded-full blur-3xl"
       />
       <motion.div
         animate={{
@@ -244,12 +245,12 @@ const StatsSection = () => {
           opacity: [0.03, 0.08, 0.03],
         }}
         transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
-        className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#FFB020] rounded-full blur-3xl"
+        className="absolute bottom-1/4 right-1/4 w-72 h-72 sm:w-96 sm:h-96 bg-[#FFB020] rounded-full blur-3xl"
       />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <StaggerContainer staggerDelay={0.15}>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-8">
             {stats.map((stat, index) => (
               <StaggerItem key={index}>
                 <motion.div
@@ -257,9 +258,9 @@ const StatsSection = () => {
                   className="relative group"
                 >
                   <div className="absolute -inset-px bg-gradient-to-b from-[#00D4FF]/20 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className="relative bg-[#0A1628]/50 backdrop-blur-sm border border-white/10 rounded-xl p-8 hover:border-[#00D4FF]/30 transition-all duration-500">
+                  <div className="relative bg-[#0A1628]/50 backdrop-blur-sm border border-white/10 rounded-xl p-5 sm:p-8 hover:border-[#00D4FF]/30 transition-all duration-500">
                     <div className="flex items-start justify-between mb-6">
-                      <span className="text-6xl font-bold text-white/5">{stat.number}</span>
+                      <span className="text-5xl sm:text-6xl font-bold text-white/5">{stat.number}</span>
                       <motion.div
                         animate={{ rotate: [0, 10, -10, 0] }}
                         transition={{ duration: 3, repeat: Infinity }}
@@ -271,7 +272,7 @@ const StatsSection = () => {
                       initial={{ scale: 0 }}
                       animate={isInView ? { scale: 1 } : {}}
                       transition={{ duration: 0.6, delay: index * 0.15 + 0.3 }}
-                      className="text-4xl font-bold text-white mb-2"
+                      className="text-3xl sm:text-4xl font-bold text-white mb-2"
                     >
                       {stat.value}
                     </motion.div>
@@ -320,7 +321,7 @@ const WhySOGIPSection = () => {
   ];
 
   return (
-    <section ref={ref} className="py-32 bg-[#0D1F36] relative overflow-hidden">
+    <section ref={ref} className="py-16 sm:py-20 lg:py-32 bg-[#0D1F36] relative overflow-hidden">
       {/* Background Pattern */}
       <motion.div
         animate={{ 
@@ -335,20 +336,20 @@ const WhySOGIPSection = () => {
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <FadeInUp>
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
               Why Choose <span className="text-[#00D4FF]">SOGIP</span>
             </h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
               A world-class industrial ecosystem designed for sustainable energy development
             </p>
           </div>
         </FadeInUp>
 
         <StaggerContainer staggerDelay={0.2}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8">
             {features.map((feature, index) => (
               <StaggerItem key={index}>
                 <motion.div
@@ -356,7 +357,7 @@ const WhySOGIPSection = () => {
                   className="group relative h-full"
                 >
                   <div className="absolute -inset-px bg-gradient-to-r from-[#00D4FF] to-[#FFB020] rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className="relative bg-[#0A1628] border border-white/10 rounded-2xl p-8 hover:border-transparent transition-all duration-500 h-full">
+                  <div className="relative bg-[#0A1628] border border-white/10 rounded-2xl p-5 sm:p-8 hover:border-transparent transition-all duration-500 h-full">
                     <motion.div
                       whileHover={{ scale: 1.2, rotate: 360 }}
                       transition={{ duration: 0.6 }}
@@ -364,7 +365,7 @@ const WhySOGIPSection = () => {
                     >
                       <feature.icon className="text-[#00D4FF]" size={32} />
                     </motion.div>
-                    <h3 className="text-2xl font-bold text-white mb-4">{feature.title}</h3>
+                    <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">{feature.title}</h3>
                     <p className="text-gray-400 leading-relaxed">{feature.description}</p>
                   </div>
                 </motion.div>
@@ -404,7 +405,7 @@ const ProjectsSection = () => {
   ];
 
   return (
-    <section ref={ref} className="py-32 bg-gradient-to-b from-[#0D1F36] to-[#0A1628] relative overflow-hidden">
+    <section ref={ref} className="py-16 sm:py-20 lg:py-32 bg-gradient-to-b from-[#0D1F36] to-[#0A1628] relative overflow-hidden">
       {/* Animated background orbs */}
       <motion.div
         animate={{
@@ -414,23 +415,23 @@ const ProjectsSection = () => {
           opacity: [0.05, 0.1, 0.05],
         }}
         transition={{ duration: 15, repeat: Infinity }}
-        className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#00D4FF] rounded-full blur-3xl"
+        className="absolute top-1/4 left-1/4 w-72 h-72 sm:w-96 sm:h-96 bg-[#00D4FF] rounded-full blur-3xl"
       />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <FadeInUp>
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
               Anchor <span className="text-[#FFB020]">Projects</span>
             </h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
               Major investments driving economic growth and industrial development
             </p>
           </div>
         </FadeInUp>
 
         <StaggerContainer staggerDelay={0.2}>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
             {projects.map((project, index) => (
               <StaggerItem key={index}>
                 <motion.div
@@ -444,11 +445,14 @@ const ProjectsSection = () => {
                       transition={{ duration: 0.6 }}
                       src={project.image}
                       alt={project.title}
+                      width="800"
+                      height="1000"
+                      loading="lazy"
                       className="absolute inset-0 w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628] via-[#0A1628]/60 to-transparent" />
                   </div>
-                  <div className="absolute bottom-0 left-0 right-0 p-8">
+                  <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-8">
                     <motion.div
                       initial={{ x: -20, opacity: 0 }}
                       animate={isInView ? { x: 0, opacity: 1 } : {}}
@@ -457,7 +461,7 @@ const ProjectsSection = () => {
                     >
                       {project.status}
                     </motion.div>
-                    <h3 className="text-2xl font-bold text-white mb-2">{project.title}</h3>
+                    <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">{project.title}</h3>
                     <p className="text-[#FFB020] text-xl font-semibold">{project.value}</p>
                   </div>
                 </motion.div>
@@ -472,7 +476,7 @@ const ProjectsSection = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-white/5 backdrop-blur-sm text-white font-semibold rounded-lg border-2 border-white/20 hover:bg-white/10 hover:border-[#00D4FF]/50 transition-all duration-300"
+                className="min-h-12 px-7 sm:px-8 py-3 sm:py-4 bg-white/5 backdrop-blur-sm text-white font-semibold rounded-lg border-2 border-white/20 hover:bg-white/10 hover:border-[#00D4FF]/50 transition-all duration-300"
               >
                 View All Projects
               </motion.button>
@@ -490,44 +494,44 @@ const CTASection = () => {
   const isInView = useInView(ref, { once: true });
 
   return (
-    <section ref={ref} className="py-32 bg-[#0A1628] relative overflow-hidden">
+    <section ref={ref} className="py-16 sm:py-20 lg:py-32 bg-[#0A1628] relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#00D4FF]/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#FFB020]/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 left-1/4 w-72 h-72 sm:w-96 sm:h-96 bg-[#00D4FF]/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-72 h-72 sm:w-96 sm:h-96 bg-[#FFB020]/10 rounded-full blur-3xl" />
       </div>
 
-      <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center relative z-10">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
             Ready to Invest in{' '}
             <span className="bg-gradient-to-r from-[#00D4FF] to-[#FFB020] bg-clip-text text-transparent">
               Sabah's Future
             </span>
             ?
           </h2>
-          <p className="text-xl text-gray-400 mb-10">
+          <p className="text-base sm:text-lg md:text-xl text-gray-400 mb-8 sm:mb-10">
             Join industry leaders in shaping the energy landscape of Southeast Asia
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/contact">
+            <Link to="/contact" className="w-full sm:w-auto">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-10 py-5 bg-gradient-to-r from-[#00D4FF] to-[#0099CC] text-white text-lg font-semibold rounded-lg shadow-2xl shadow-[#00D4FF]/30 hover:shadow-[#00D4FF]/50 transition-all duration-300"
+                className="w-full min-h-12 px-7 sm:px-10 py-3 sm:py-5 bg-gradient-to-r from-[#00D4FF] to-[#0099CC] text-white text-base sm:text-lg font-semibold rounded-lg shadow-2xl shadow-[#00D4FF]/30 hover:shadow-[#00D4FF]/50 transition-all duration-300"
               >
                 Get Started Today
               </motion.button>
             </Link>
-            <Link to="/about">
+            <Link to="/about" className="w-full sm:w-auto">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-10 py-5 bg-white/5 backdrop-blur-sm text-white text-lg font-semibold rounded-lg border-2 border-white/20 hover:bg-white/10 transition-all duration-300"
+                className="w-full min-h-12 px-7 sm:px-10 py-3 sm:py-5 bg-white/5 backdrop-blur-sm text-white text-base sm:text-lg font-semibold rounded-lg border-2 border-white/20 hover:bg-white/10 transition-all duration-300"
               >
                 Learn More
               </motion.button>

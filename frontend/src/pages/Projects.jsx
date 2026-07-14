@@ -1,11 +1,11 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Calendar, DollarSign, MapPin, TrendingUp, CheckCircle2 } from 'lucide-react';
+import { Calendar, DollarSign, MapPin, TrendingUp, CheckCircle2, X } from 'lucide-react';
 import { HorizontalImageScroll } from '../components/HorizontalImageScroll';
 
 export const Projects = () => {
   return (
-    <div className="bg-[#0A1628] min-h-screen pt-20">
+    <div className="bg-[#0A1628] min-h-[100dvh] pt-20">
       <HeroSection />
       <ImageScrollSection />
       <AnchorProjectsSection />
@@ -20,8 +20,8 @@ const HeroSection = () => {
   const isInView = useInView(ref, { once: true });
 
   return (
-    <section ref={ref} className="py-32">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <section ref={ref} className="py-16 sm:py-20 lg:py-28">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -31,13 +31,13 @@ const HeroSection = () => {
           <div className="inline-block px-4 py-2 bg-[#00D4FF]/10 border border-[#00D4FF]/30 rounded-full text-[#00D4FF] text-sm font-semibold mb-6">
             Major Investments
           </div>
-          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 sm:mb-6">
             Anchor{' '}
             <span className="bg-gradient-to-r from-[#00D4FF] to-[#FFB020] bg-clip-text text-transparent">
               Projects
             </span>
           </h1>
-          <p className="text-xl text-gray-400 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-4xl mx-auto leading-relaxed">
             $20B+ in committed investments driving SOGIP's transformation into Southeast Asia's premier energy hub
           </p>
         </motion.div>
@@ -77,9 +77,9 @@ const ImageScrollSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-[#0A1628] to-[#0D1F36]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-8">
-        <h2 className="text-3xl md:text-4xl font-bold text-white text-center">
+    <section className="py-14 sm:py-16 lg:py-20 bg-gradient-to-b from-[#0A1628] to-[#0D1F36]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 sm:mb-8">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center">
           World-Class <span className="text-[#00D4FF]">Facilities</span>
         </h2>
       </div>
@@ -92,6 +92,23 @@ const AnchorProjectsSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   const [selectedProject, setSelectedProject] = useState(null);
+
+  useEffect(() => {
+    if (!selectedProject) return undefined;
+
+    const previousOverflow = document.body.style.overflow;
+    const closeOnEscape = (event) => {
+      if (event.key === 'Escape') setSelectedProject(null);
+    };
+
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', closeOnEscape);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', closeOnEscape);
+    };
+  }, [selectedProject]);
 
   const projects = [
     {
@@ -193,26 +210,31 @@ const AnchorProjectsSection = () => {
   ];
 
   return (
-    <section ref={ref} className="py-32 bg-gradient-to-b from-[#0A1628] to-[#0D1F36]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <section ref={ref} className="py-16 sm:py-20 lg:py-32 bg-gradient-to-b from-[#0A1628] to-[#0D1F36]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8">
           {projects.map((project, index) => (
-            <motion.div
+            <motion.button
+              type="button"
               key={project.id}
               initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               onClick={() => setSelectedProject(project)}
-              className="group cursor-pointer"
+              className="group cursor-pointer w-full text-left rounded-2xl"
+              aria-label={`View details for ${project.title}`}
             >
-              <div className="relative overflow-hidden rounded-2xl aspect-[16/10]">
+              <div className="relative overflow-hidden rounded-2xl aspect-[4/3] sm:aspect-[16/10]">
                 <img
                   src={project.image}
                   alt={project.title}
+                  width="800"
+                  height="500"
+                  loading="lazy"
                   className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628] via-[#0A1628]/70 to-transparent" />
-                <div className="absolute top-6 right-6">
+                <div className="absolute top-4 right-4 sm:top-6 sm:right-6">
                   <div
                     className={`px-4 py-2 backdrop-blur-md border-2 rounded-full text-xs font-bold shadow-xl ${
                       project.status === 'Operational'
@@ -225,8 +247,8 @@ const AnchorProjectsSection = () => {
                     {project.status}
                   </div>
                 </div>
-                <div className="absolute bottom-0 left-0 right-0 p-8">
-                  <h3 className="text-2xl font-bold text-white mb-2">{project.title}</h3>
+                <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-8">
+                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">{project.title}</h3>
                   <div className="flex items-center justify-between">
                     <div className="text-[#FFB020] text-2xl font-bold">{project.value}</div>
                     <div className="flex items-center space-x-2 text-gray-400 text-sm">
@@ -236,7 +258,7 @@ const AnchorProjectsSection = () => {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </motion.button>
           ))}
         </div>
 
@@ -246,33 +268,39 @@ const AnchorProjectsSection = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             onClick={() => setSelectedProject(null)}
-            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-6"
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-6"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="project-dialog-title"
           >
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-[#0D1F36] border border-white/10 rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+              className="bg-[#0D1F36] border border-white/10 rounded-2xl sm:rounded-3xl max-w-4xl w-full max-h-[calc(100dvh-1.5rem)] sm:max-h-[90dvh] overflow-y-auto overscroll-contain"
             >
-              <div className="relative aspect-video">
+              <div className="relative aspect-[4/3] sm:aspect-video">
                 <img
                   src={selectedProject.image}
                   alt={selectedProject.title}
-                  className="w-full h-full object-cover rounded-t-3xl"
+                  width="1200"
+                  height="675"
+                  className="w-full h-full object-cover rounded-t-2xl sm:rounded-t-3xl"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0D1F36] to-transparent" />
                 <button
                   onClick={() => setSelectedProject(null)}
-                  className="absolute top-6 right-6 w-10 h-10 bg-white/10 backdrop-blur-sm hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors"
+                  className="absolute top-3 right-3 sm:top-6 sm:right-6 w-11 h-11 bg-[#0A1628]/70 backdrop-blur-sm hover:bg-[#0A1628] rounded-full flex items-center justify-center text-white transition-colors"
+                  aria-label="Close project details"
                 >
-                  ✕
+                  <X size={20} />
                 </button>
               </div>
-              <div className="p-8">
-                <div className="flex items-start justify-between mb-6">
+              <div className="p-5 sm:p-8">
+                <div className="flex flex-col sm:flex-row items-start justify-between gap-4 mb-6">
                   <div>
-                    <h2 className="text-3xl font-bold text-white mb-2">{selectedProject.title}</h2>
-                    <div className="flex items-center space-x-4 text-sm text-gray-400">
+                    <h2 id="project-dialog-title" className="text-2xl sm:text-3xl font-bold text-white mb-2">{selectedProject.title}</h2>
+                    <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 text-sm text-gray-400">
                       <div className="flex items-center space-x-2">
                         <MapPin size={16} className="text-[#00D4FF]" />
                         <span>{selectedProject.location}</span>
@@ -283,13 +311,13 @@ const AnchorProjectsSection = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="text-right">
+                  <div className="text-left sm:text-right">
                     <div className="text-sm text-gray-400 mb-1">Investment Value</div>
-                    <div className="text-3xl font-bold text-[#FFB020]">{selectedProject.value}</div>
+                    <div className="text-2xl sm:text-3xl font-bold text-[#FFB020]">{selectedProject.value}</div>
                   </div>
                 </div>
 
-                <p className="text-gray-400 text-lg leading-relaxed mb-8">{selectedProject.description}</p>
+                <p className="text-gray-400 text-base sm:text-lg leading-relaxed mb-6 sm:mb-8">{selectedProject.description}</p>
 
                 <div>
                   <h3 className="text-xl font-bold text-white mb-4">Key Highlights</h3>
@@ -323,9 +351,9 @@ const InvestmentStatsSection = () => {
   ];
 
   return (
-    <section ref={ref} className="py-20 bg-[#0D1F36]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <section ref={ref} className="py-14 sm:py-16 lg:py-20 bg-[#0D1F36]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {stats.map((stat, index) => (
             <motion.div
               key={index}
@@ -337,7 +365,7 @@ const InvestmentStatsSection = () => {
               <div className="w-16 h-16 mx-auto mb-4 rounded-xl bg-gradient-to-br from-[#00D4FF]/20 to-[#FFB020]/20 flex items-center justify-center">
                 <stat.icon className="text-[#00D4FF]" size={32} />
               </div>
-              <div className="text-4xl font-bold text-white mb-2">{stat.value}</div>
+              <div className="text-3xl sm:text-4xl font-bold text-white mb-2">{stat.value}</div>
               <div className="text-gray-400 text-sm">{stat.label}</div>
             </motion.div>
           ))}
@@ -352,26 +380,26 @@ const UpcomingProjectsSection = () => {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section ref={ref} className="py-32 bg-gradient-to-b from-[#0D1F36] to-[#0A1628]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
+    <section ref={ref} className="py-16 sm:py-20 lg:py-32 bg-gradient-to-b from-[#0D1F36] to-[#0A1628]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
             More Projects{' '}
             <span className="bg-gradient-to-r from-[#00D4FF] to-[#FFB020] bg-clip-text text-transparent">
               Coming Soon
             </span>
           </h2>
-          <p className="text-xl text-gray-400 mb-10 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-400 mb-8 sm:mb-10 max-w-3xl mx-auto">
             Additional investments in renewable energy, hydrogen production, and advanced manufacturing are in the pipeline
           </p>
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-10 py-5 bg-gradient-to-r from-[#00D4FF] to-[#0099CC] text-white text-lg font-semibold rounded-lg shadow-2xl shadow-[#00D4FF]/30 hover:shadow-[#00D4FF]/50 transition-all duration-300"
+            className="w-full sm:w-auto min-h-12 px-7 sm:px-10 py-3 sm:py-5 bg-gradient-to-r from-[#00D4FF] to-[#0099CC] text-white text-base sm:text-lg font-semibold rounded-lg shadow-2xl shadow-[#00D4FF]/30 hover:shadow-[#00D4FF]/50 transition-all duration-300"
           >
             Contact Investment Team
           </motion.button>

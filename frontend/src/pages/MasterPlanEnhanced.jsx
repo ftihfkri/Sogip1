@@ -1,6 +1,6 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
-import { Factory, Droplet, Zap, Package, Building2, Ship, MapPin, X } from 'lucide-react';
+import { Factory, Droplet, Zap, Package, Building2, Ship, MapPin, X, MousePointerClick, Clock3, Info } from 'lucide-react';
 
 export const MasterPlan = () => {
   const heroRef = useRef(null);
@@ -13,7 +13,7 @@ export const MasterPlan = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
-    <div className="bg-[#0A1628] min-h-screen pt-20">
+    <div className="bg-[#0A1628] min-h-[100dvh] pt-20">
       <HeroSection heroRef={heroRef} y={y} opacity={opacity} />
       <InteractiveMapSection />
       <ZonesSection />
@@ -27,7 +27,7 @@ const HeroSection = ({ heroRef, y, opacity }) => {
   const isInView = useInView(ref, { once: true });
 
   return (
-    <section ref={heroRef} className="relative py-32 overflow-hidden">
+    <section ref={heroRef} className="relative py-16 sm:py-20 lg:py-28 overflow-hidden">
       {/* Animated background particles */}
       <div className="absolute inset-0">
         {[...Array(20)].map((_, i) => (
@@ -52,7 +52,7 @@ const HeroSection = ({ heroRef, y, opacity }) => {
         ))}
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           ref={ref}
           style={{ y, opacity }}
@@ -69,13 +69,13 @@ const HeroSection = ({ heroRef, y, opacity }) => {
           >
             Master Plan
           </motion.div>
-          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 sm:mb-6">
             Integrated Industrial{' '}
             <span className="bg-gradient-to-r from-[#00D4FF] via-[#FFB020] to-[#00D4FF] bg-clip-text text-transparent">
               Ecosystem
             </span>
           </h1>
-          <p className="text-xl text-gray-400 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-4xl mx-auto leading-relaxed">
             5,539 acres strategically zoned for oil and gas operations, petrochemical facilities,
             and supporting infrastructure
           </p>
@@ -90,6 +90,23 @@ const InteractiveMapSection = () => {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   const [selectedZone, setSelectedZone] = useState(null);
   const [hoveredZone, setHoveredZone] = useState(null);
+
+  useEffect(() => {
+    if (!selectedZone) return undefined;
+
+    const previousOverflow = document.body.style.overflow;
+    const closeOnEscape = (event) => {
+      if (event.key === 'Escape') setSelectedZone(null);
+    };
+
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', closeOnEscape);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', closeOnEscape);
+    };
+  }, [selectedZone]);
 
   const zones = [
     {
@@ -179,7 +196,7 @@ const InteractiveMapSection = () => {
   ];
 
   return (
-    <section ref={ref} className="py-32 bg-gradient-to-b from-[#0A1628] to-[#0D1F36] relative">
+    <section ref={ref} className="py-16 sm:py-20 lg:py-32 bg-gradient-to-b from-[#0A1628] to-[#0D1F36] relative overflow-hidden">
       {/* Floating background elements */}
       <motion.div
         animate={{
@@ -187,20 +204,20 @@ const InteractiveMapSection = () => {
           scale: [1, 1.1, 1],
         }}
         transition={{ duration: 20, repeat: Infinity }}
-        className="absolute top-1/4 right-1/4 w-96 h-96 bg-[#00D4FF]/5 rounded-full blur-3xl"
+        className="absolute top-1/4 right-1/4 w-72 h-72 sm:w-96 sm:h-96 bg-[#00D4FF]/5 rounded-full blur-3xl"
       />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
             Interactive <span className="text-[#00D4FF]">Site Map</span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-4">
+          <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-4xl mx-auto mb-4">
             <strong>Click on the numbered zones below</strong> to explore detailed information about each development area
           </p>
           <p className="text-base text-gray-400 max-w-3xl mx-auto mb-6">
@@ -209,9 +226,9 @@ const InteractiveMapSection = () => {
           <motion.div
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
-            className="text-[#FFB020] text-base font-semibold mt-4 flex items-center justify-center space-x-2"
+            className="text-[#FFB020] text-sm sm:text-base font-semibold mt-4 flex items-center justify-center gap-2"
           >
-            <span>👆</span>
+            <MousePointerClick aria-hidden="true" size={20} className="flex-shrink-0" />
             <span>Click any numbered circle below for zone details</span>
           </motion.div>
         </motion.div>
@@ -220,10 +237,10 @@ const InteractiveMapSection = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={isInView ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative bg-[#0A1628]/50 backdrop-blur-sm border-2 border-[#00D4FF]/20 rounded-3xl p-8 mb-12 overflow-hidden shadow-2xl shadow-[#00D4FF]/10"
+          className="relative bg-[#0A1628]/50 backdrop-blur-sm border-2 border-[#00D4FF]/20 rounded-2xl sm:rounded-3xl p-3 sm:p-5 lg:p-8 mb-8 sm:mb-12 overflow-hidden shadow-2xl shadow-[#00D4FF]/10"
         >
           {/* Map Background */}
-          <div className="aspect-video relative bg-gradient-to-br from-[#0D1F36] to-[#0A1628] rounded-2xl overflow-hidden">
+          <div className="min-h-[270px] aspect-[4/3] sm:min-h-0 sm:aspect-video relative bg-gradient-to-br from-[#0D1F36] to-[#0A1628] rounded-xl sm:rounded-2xl overflow-hidden">
             {/* Animated Grid */}
             <motion.div
               animate={{ opacity: [0.05, 0.15, 0.05] }}
@@ -266,7 +283,8 @@ const InteractiveMapSection = () => {
 
             {/* Zone Markers */}
             {zones.map((zone, index) => (
-              <motion.div
+              <motion.button
+                type="button"
                 key={zone.id}
                 initial={{ opacity: 0, scale: 0 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
@@ -274,8 +292,9 @@ const InteractiveMapSection = () => {
                 onHoverStart={() => setHoveredZone(zone)}
                 onHoverEnd={() => setHoveredZone(null)}
                 onClick={() => setSelectedZone(zone)}
-                className="absolute cursor-pointer group"
+                className="absolute cursor-pointer group rounded-full"
                 style={{ left: zone.x, top: zone.y, transform: 'translate(-50%, -50%)' }}
+                aria-label={`Open details for ${zone.name}`}
               >
                 <div className="relative">
                   {/* Pulse rings */}
@@ -303,14 +322,14 @@ const InteractiveMapSection = () => {
                     whileHover={{ scale: 1.2 }}
                     whileTap={{ scale: 0.9 }}
                     transition={{ type: 'spring', stiffness: 300 }}
-                    className="relative w-16 h-16 rounded-full border-4 border-[#0A1628] shadow-2xl flex items-center justify-center cursor-pointer"
+                    className="relative w-11 h-11 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-full border-[3px] sm:border-4 border-[#0A1628] shadow-2xl flex items-center justify-center cursor-pointer"
                     style={{ 
                       backgroundColor: zone.color,
                       boxShadow: `0 0 30px ${zone.color}80, 0 0 60px ${zone.color}40`,
                     }}
                   >
                     {/* STATIC NUMBER - NO ANIMATION */}
-                    <div className="text-white font-bold text-xl">
+                    <div className="text-white font-bold text-base sm:text-lg lg:text-xl">
                       {zone.id}
                     </div>
                   </motion.div>
@@ -321,7 +340,7 @@ const InteractiveMapSection = () => {
                       initial={{ opacity: 0, y: 10, scale: 0.8 }}
                       animate={{ opacity: 1, y: -80, scale: 1 }}
                       exit={{ opacity: 0, y: 10, scale: 0.8 }}
-                      className="absolute left-1/2 transform -translate-x-1/2 pointer-events-none"
+                      className="hidden sm:block absolute left-1/2 transform -translate-x-1/2 pointer-events-none"
                     >
                       <div className="bg-[#0A1628]/95 backdrop-blur-xl border-2 border-white/20 rounded-xl px-4 py-3 whitespace-nowrap shadow-2xl">
                         <div className="text-white text-sm font-bold mb-1">{zone.name}</div>
@@ -348,12 +367,12 @@ const InteractiveMapSection = () => {
                     </motion.div>
                   )}
                 </div>
-              </motion.div>
+              </motion.button>
             ))}
           </div>
 
           {/* Legend */}
-          <div className="mt-8 flex flex-wrap justify-center gap-6">
+          <div className="mt-5 sm:mt-8 flex flex-wrap justify-center gap-3 sm:gap-6">
             {[
               { color: '#4ADE80', label: 'Under Construction' },
               { color: '#00D4FF', label: 'In Development' },
@@ -385,9 +404,9 @@ const InteractiveMapSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="mt-12 bg-[#0A1628]/50 backdrop-blur-sm border border-white/10 rounded-2xl p-8"
+          className="mt-8 sm:mt-12 bg-[#0A1628]/50 backdrop-blur-sm border border-white/10 rounded-2xl p-5 sm:p-8"
         >
-          <h3 className="text-2xl font-bold text-white mb-6 text-center">
+          <h3 className="text-xl sm:text-2xl font-bold text-white mb-5 sm:mb-6 text-center">
             Zone Quick Reference
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -396,7 +415,7 @@ const InteractiveMapSection = () => {
                 key={zone.id}
                 onClick={() => setSelectedZone(zone)}
                 whileHover={{ scale: 1.02 }}
-                className="flex items-start space-x-4 p-4 bg-white/5 rounded-xl border border-white/10 hover:border-white/30 transition-all text-left group"
+                className="flex items-start space-x-4 min-h-16 p-4 bg-white/5 rounded-xl border border-white/10 hover:border-white/30 transition-all text-left group"
               >
                 <div
                   className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 font-bold text-white text-lg"
@@ -426,8 +445,9 @@ const InteractiveMapSection = () => {
               </motion.button>
             ))}
           </div>
-          <p className="text-center text-gray-400 text-sm mt-6">
-            💡 Click any zone to view detailed information including investment value, completion timeline, and key features
+          <p className="text-center text-gray-400 text-sm mt-6 flex items-start justify-center gap-2">
+            <Info aria-hidden="true" size={18} className="flex-shrink-0 mt-0.5" />
+            <span>Click any zone to view detailed information including investment value, completion timeline, and key features</span>
           </p>
         </motion.div>
 
@@ -438,7 +458,10 @@ const InteractiveMapSection = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedZone(null)}
-            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-6"
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-6"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="zone-dialog-title"
           >
             <motion.div
               initial={{ scale: 0.8, opacity: 0, y: 50 }}
@@ -446,26 +469,27 @@ const InteractiveMapSection = () => {
               exit={{ scale: 0.8, opacity: 0, y: 50 }}
               transition={{ type: 'spring', stiffness: 300, damping: 25 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-gradient-to-br from-[#0D1F36] to-[#0A1628] border-2 rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto relative shadow-2xl"
+              className="bg-gradient-to-br from-[#0D1F36] to-[#0A1628] border-2 rounded-2xl sm:rounded-3xl max-w-3xl w-full max-h-[calc(100dvh-1.5rem)] sm:max-h-[90dvh] overflow-y-auto overscroll-contain relative shadow-2xl"
               style={{ borderColor: selectedZone.color }}
             >
               {/* Close button */}
               <button
                 onClick={() => setSelectedZone(null)}
-                className="absolute top-6 right-6 w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors z-10"
+                className="absolute top-3 right-3 sm:top-6 sm:right-6 w-11 h-11 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors z-10"
+                aria-label="Close zone details"
               >
                 <X size={20} />
               </button>
 
               {/* Header with glow */}
-              <div className="relative p-8 pb-6 overflow-hidden">
+              <div className="relative p-5 pr-16 pb-5 sm:p-8 sm:pr-20 sm:pb-6 overflow-hidden">
                 <motion.div
                   animate={{
                     scale: [1, 1.2, 1],
                     opacity: [0.1, 0.2, 0.1],
                   }}
                   transition={{ duration: 3, repeat: Infinity }}
-                  className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl"
+                  className="absolute top-0 right-0 w-72 h-72 sm:w-96 sm:h-96 rounded-full blur-3xl"
                   style={{ backgroundColor: selectedZone.color }}
                 />
                 
@@ -480,8 +504,8 @@ const InteractiveMapSection = () => {
                   >
                     {selectedZone.status}
                   </div>
-                  <h2 className="text-4xl font-bold text-white mb-4">{selectedZone.name}</h2>
-                  <div className="flex flex-wrap gap-6 text-sm">
+                  <h2 id="zone-dialog-title" className="text-2xl sm:text-4xl font-bold text-white mb-4">{selectedZone.name}</h2>
+                  <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-6 text-sm">
                     <div className="flex items-center space-x-2 text-gray-300">
                       <MapPin size={18} style={{ color: selectedZone.color }} />
                       <span>{selectedZone.area}</span>
@@ -491,7 +515,7 @@ const InteractiveMapSection = () => {
                       <span>Investment: <strong className="text-[#FFB020]">{selectedZone.investment}</strong></span>
                     </div>
                     <div className="flex items-center space-x-2 text-gray-300">
-                      <span>⏰</span>
+                      <Clock3 aria-hidden="true" size={18} />
                       <span>Completion: <strong className="text-[#00D4FF]">{selectedZone.completion}</strong></span>
                     </div>
                   </div>
@@ -499,12 +523,12 @@ const InteractiveMapSection = () => {
               </div>
 
               {/* Content */}
-              <div className="px-8 pb-8">
-                <p className="text-gray-300 text-lg leading-relaxed mb-8">
+              <div className="px-5 pb-5 sm:px-8 sm:pb-8">
+                <p className="text-gray-300 text-base sm:text-lg leading-relaxed mb-6 sm:mb-8">
                   {selectedZone.description}
                 </p>
 
-                <h3 className="text-2xl font-bold text-white mb-4">Key Features</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-4">Key Features</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {selectedZone.features.map((feature, index) => (
                     <motion.div
@@ -581,30 +605,30 @@ const ZonesSection = () => {
   ];
 
   return (
-    <section ref={ref} className="py-32 bg-[#0D1F36] relative overflow-hidden">
+    <section ref={ref} className="py-16 sm:py-20 lg:py-32 bg-[#0D1F36] relative overflow-hidden">
       {/* Animated background */}
       <motion.div
         animate={{ rotate: 360 }}
         transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
-        className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-r from-[#00D4FF]/5 to-transparent rounded-full blur-3xl"
+        className="absolute top-0 left-1/4 w-72 h-72 sm:w-96 sm:h-96 bg-gradient-to-r from-[#00D4FF]/5 to-transparent rounded-full blur-3xl"
       />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-20"
+          className="text-center mb-12 sm:mb-16 lg:mb-20"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
             Functional <span className="text-[#FFB020]">Zones</span>
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
             Purpose-designed zones for integrated operations
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
           {zoneDetails.map((zone, index) => (
             <motion.div
               key={index}
@@ -619,7 +643,7 @@ const ZonesSection = () => {
                 className="absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                 style={{ background: `linear-gradient(135deg, ${zone.color}40, transparent)` }}
               />
-              <div className="relative bg-[#0A1628]/80 backdrop-blur-sm border border-white/10 rounded-2xl p-8 h-full hover:border-white/20 transition-all duration-500">
+              <div className="relative bg-[#0A1628]/80 backdrop-blur-sm border border-white/10 rounded-2xl p-5 sm:p-8 h-full hover:border-white/20 transition-all duration-500">
                 <motion.div
                   whileHover={{ rotate: 360, scale: 1.1 }}
                   transition={{ duration: 0.6 }}
@@ -653,7 +677,7 @@ const LandAvailabilitySection = () => {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section ref={ref} className="py-32 bg-gradient-to-b from-[#0D1F36] to-[#0A1628] relative overflow-hidden">
+    <section ref={ref} className="py-16 sm:py-20 lg:py-32 bg-gradient-to-b from-[#0D1F36] to-[#0A1628] relative overflow-hidden">
       {/* Animated orbs */}
       <motion.div
         animate={{
@@ -661,10 +685,10 @@ const LandAvailabilitySection = () => {
           y: [0, 50, 0],
         }}
         transition={{ duration: 15, repeat: Infinity }}
-        className="absolute top-1/4 right-0 w-96 h-96 bg-[#FFB020]/10 rounded-full blur-3xl"
+        className="absolute top-1/4 right-0 w-72 h-72 sm:w-96 sm:h-96 bg-[#FFB020]/10 rounded-full blur-3xl"
       />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -672,26 +696,26 @@ const LandAvailabilitySection = () => {
           className="relative"
         >
           <div className="absolute -inset-4 bg-gradient-to-r from-[#00D4FF]/20 via-[#FFB020]/20 to-[#00D4FF]/20 rounded-3xl blur-2xl" />
-          <div className="relative bg-gradient-to-br from-[#00D4FF]/10 to-[#FFB020]/10 border-2 border-white/20 rounded-3xl p-12 text-center backdrop-blur-sm">
+          <div className="relative bg-gradient-to-br from-[#00D4FF]/10 to-[#FFB020]/10 border-2 border-white/20 rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-12 text-center backdrop-blur-sm">
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-              className="absolute top-8 right-8 w-20 h-20 border-4 border-[#00D4FF]/30 border-t-[#00D4FF] rounded-full"
+              className="hidden sm:block absolute top-8 right-8 w-20 h-20 border-4 border-[#00D4FF]/30 border-t-[#00D4FF] rounded-full"
             />
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
               Ready to Secure Your{' '}
               <span className="bg-gradient-to-r from-[#00D4FF] via-[#FFB020] to-[#00D4FF] bg-clip-text text-transparent">
                 Land Parcel
               </span>
               ?
             </h2>
-            <p className="text-xl text-gray-400 mb-10 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-gray-400 mb-8 sm:mb-10 max-w-3xl mx-auto">
               Multiple plots available across all zones with flexible lease terms and competitive rates
             </p>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-10 py-5 bg-gradient-to-r from-[#00D4FF] to-[#0099CC] text-white text-lg font-semibold rounded-lg shadow-2xl shadow-[#00D4FF]/30 hover:shadow-[#00D4FF]/50 transition-all duration-300"
+              className="w-full sm:w-auto min-h-12 px-7 sm:px-10 py-3 sm:py-5 bg-gradient-to-r from-[#00D4FF] to-[#0099CC] text-white text-base sm:text-lg font-semibold rounded-lg shadow-2xl shadow-[#00D4FF]/30 hover:shadow-[#00D4FF]/50 transition-all duration-300"
             >
               Contact Investment Team
             </motion.button>

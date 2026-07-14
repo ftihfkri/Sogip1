@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
-import { Logo, LogoSimple } from './Logo';
+import { Logo } from './Logo';
 import { scrollToTop } from '../utils/scrollUtils';
 
 export const Navigation = () => {
@@ -25,6 +25,23 @@ export const Navigation = () => {
     scrollToTop();
   }, [location.pathname]);
 
+  useEffect(() => {
+    if (!isMobileMenuOpen) return undefined;
+
+    const previousOverflow = document.body.style.overflow;
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') setIsMobileMenuOpen(false);
+    };
+
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isMobileMenuOpen]);
+
   const handleNavClick = (path) => {
     navigate(path);
     scrollToTop();
@@ -43,30 +60,31 @@ export const Navigation = () => {
 
   return (
     <motion.nav
+      aria-label="Primary navigation"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled
+        isScrolled || isMobileMenuOpen
           ? 'bg-[#0A1628]/95 backdrop-blur-lg shadow-lg'
           : 'bg-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center h-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between gap-4 h-20">
           {/* Logo - CLOSE TO NAV */}
-          <div className="mr-12">
+          <div className="flex-shrink-0 lg:mr-8 xl:mr-12">
             <Logo />
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-6 flex-1">
-            <div className="flex items-center space-x-6">
+          <div className="hidden lg:flex items-center gap-4 xl:gap-6 flex-1 min-w-0">
+            <div className="flex items-center gap-3 xl:gap-5">
               {navLinks.map((link) => (
                 <button
                   key={link.path}
                   onClick={() => handleNavClick(link.path)}
-                  className="relative group cursor-pointer"
+                  className="relative group cursor-pointer min-h-11 px-1 flex items-center"
                 >
                   <span
                     className={`text-sm font-medium transition-colors duration-300 ${
@@ -88,21 +106,23 @@ export const Navigation = () => {
               ))}
             </div>
             <div className="flex-1" />
-            <button onClick={() => handleNavClick('/contact')}>
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-5 py-2 bg-gradient-to-r from-[#00D4FF] to-[#0099CC] text-white text-sm font-semibold rounded-lg shadow-lg shadow-[#00D4FF]/20 hover:shadow-[#00D4FF]/40 transition-all duration-300"
-              >
-                Invest Now
-              </motion.div>
-            </button>
+            <motion.button
+              onClick={() => handleNavClick('/contact')}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="min-h-11 px-5 py-2 bg-gradient-to-r from-[#00D4FF] to-[#0099CC] text-white text-sm font-semibold rounded-lg shadow-lg shadow-[#00D4FF]/20 hover:shadow-[#00D4FF]/40 transition-all duration-300 whitespace-nowrap"
+            >
+              Invest Now
+            </motion.button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden text-white p-2"
+            className="lg:hidden ml-auto w-11 h-11 flex items-center justify-center rounded-lg text-white bg-white/5 hover:bg-white/10 transition-colors"
+            aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-navigation"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -110,23 +130,24 @@ export const Navigation = () => {
       </div>
 
       {/* Mobile Menu */}
-      <AnimatePresence>
+      <AnimatePresence initial={false}>
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-[#0A1628]/98 backdrop-blur-lg border-t border-white/10"
+            id="mobile-navigation"
+            className="lg:hidden max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain bg-[#0A1628]/98 backdrop-blur-lg border-t border-white/10 shadow-2xl"
           >
-            <div className="px-6 py-4 space-y-4">
+            <div className="px-4 sm:px-6 py-4 space-y-2">
               {navLinks.map((link) => (
                 <button
                   key={link.path}
                   onClick={() => handleNavClick(link.path)}
-                  className={`block w-full text-left text-base font-medium transition-colors ${
+                  className={`flex items-center w-full min-h-11 px-3 rounded-lg text-left text-base font-medium transition-colors ${
                     location.pathname === link.path
-                      ? 'text-[#00D4FF]'
-                      : 'text-gray-300'
+                      ? 'text-[#00D4FF] bg-[#00D4FF]/10'
+                      : 'text-gray-300 hover:text-white hover:bg-white/5'
                   }`}
                 >
                   {link.label}
@@ -134,7 +155,7 @@ export const Navigation = () => {
               ))}
               <button 
                 onClick={() => handleNavClick('/contact')} 
-                className="w-full px-6 py-3 bg-gradient-to-r from-[#00D4FF] to-[#0099CC] text-white font-semibold rounded-lg"
+                className="w-full min-h-12 px-6 py-3 bg-gradient-to-r from-[#00D4FF] to-[#0099CC] text-white font-semibold rounded-lg"
               >
                 Invest Now
               </button>

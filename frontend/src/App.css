@@ -6,15 +6,36 @@
 
 html {
   scroll-behavior: auto;
+  scroll-padding-top: 5rem;
+  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {
+  min-width: 320px;
   overflow-x: hidden;
+  overflow-x: clip;
 }
 
 .App {
   min-height: 100vh;
+  min-height: 100dvh;
   background: #0A1628;
+}
+
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+}
+
+a,
+button,
+input,
+select,
+textarea {
+  touch-action: manipulation;
 }
 
 /* Smooth scroll with Lenis */
@@ -71,4 +92,18 @@ html.lenis {
 *:focus-visible {
   outline: 2px solid #00D4FF;
   outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
