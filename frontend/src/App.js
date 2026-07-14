@@ -8,7 +8,7 @@ import { Footer } from "./components/Footer";
 import { Home } from "./pages/Home";
 import { About } from "./pages/About";
 import { WhySOGIP } from "./pages/WhySOGIP";
-import { MasterPlan } from "./pages/MasterPlanEnhanced";
+import { MasterPlan } from "./pages/MasterPlanVerified";
 import { Contact } from "./pages/Contact";
 import { Projects } from "./pages/Projects";
 import { LogoShowcase } from "./pages/LogoShowcase";

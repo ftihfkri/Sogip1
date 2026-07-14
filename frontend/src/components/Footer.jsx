@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Linkedin, Facebook, Twitter } from 'lucide-react';
+import { Mail, Phone, MapPin } from 'lucide-react';
 import { Logo } from './Logo';
 
 export const Footer = () => {
@@ -17,35 +16,27 @@ export const Footer = () => {
               <Logo variant="large" />
             </div>
             <p className="text-gray-400 text-sm leading-relaxed mb-6">
-              Sabah Oil and Gas Industrial Park - Driving sustainable energy development and economic growth in Sabah.
+              Sipitang Oil &amp; Gas Industrial Park (SOGIP) — Sabah's first integrated industrial park designated for oil and gas and heavy industries.
             </p>
-            <div className="flex space-x-4">
-              {[Linkedin, Facebook, Twitter].map((Icon, index) => (
-                <motion.a
-                  key={index}
-                  href="#"
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  aria-label={`Visit SOGIP on ${['LinkedIn', 'Facebook', 'X'][index]}`}
-                  className="w-11 h-11 rounded-lg bg-white/5 hover:bg-[#00D4FF]/20 border border-white/10 flex items-center justify-center text-gray-400 hover:text-[#00D4FF] transition-all duration-300"
-                >
-                  <Icon size={18} />
-                </motion.a>
-              ))}
-            </div>
           </div>
 
           {/* Quick Links */}
           <div>
             <h3 className="text-white font-semibold mb-6">Quick Links</h3>
             <ul className="space-y-3">
-              {['About Us', 'Why SOGIP', 'Master Plan', 'Projects', 'Sustainability'].map(
-                (item) => (
-                  <li key={item}>
+              {[
+                ['About Us', '/about'],
+                ['Why SOGIP', '/why-sogip'],
+                ['Master Plan', '/master-plan'],
+                ['Projects', '/projects'],
+                ['News & Media', '/news'],
+              ].map(([label, path]) => (
+                  <li key={path}>
                     <Link
-                      to={`/${item.toLowerCase().replace(' ', '-')}`}
+                      to={path}
                       className="text-gray-400 hover:text-[#00D4FF] text-sm transition-colors duration-300"
                     >
-                      {item}
+                      {label}
                     </Link>
                   </li>
                 )
@@ -58,18 +49,17 @@ export const Footer = () => {
             <h3 className="text-white font-semibold mb-6">For Investors</h3>
             <ul className="space-y-3">
               {[
-                'Investment Opportunities',
-                'Tax Incentives',
-                'Application Process',
-                'News & Media',
-                'Contact',
-              ].map((item) => (
-                <li key={item}>
+                ['Published Projects', '/projects'],
+                ['Potential Tax Incentives', '/why-sogip'],
+                ['News & Media', '/news'],
+                ['Contact SOGDC', '/contact'],
+              ].map(([label, path]) => (
+                <li key={path}>
                   <Link
-                    to="/contact"
+                    to={path}
                     className="text-gray-400 hover:text-[#00D4FF] text-sm transition-colors duration-300"
                   >
-                    {item}
+                    {label}
                   </Link>
                 </li>
               ))}
@@ -82,17 +72,15 @@ export const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-start space-x-3 text-sm">
                 <MapPin size={18} className="text-[#00D4FF] mt-0.5 flex-shrink-0" />
-                <span className="text-gray-400">
-                  SOGDC Office, Kota Kinabalu, Sabah, Malaysia
-                </span>
+                <span className="text-gray-400">Level 11, Wisma Innoprise, Jalan Sulaman, 88874 Kota Kinabalu, Sabah</span>
               </li>
               <li className="flex items-center space-x-3 text-sm">
                 <Phone size={18} className="text-[#00D4FF] flex-shrink-0" />
-                <span className="text-gray-400">+60 88 XXX XXXX</span>
+                <a href="tel:+6088215772" className="text-gray-400 hover:text-[#00D4FF]">+60 88 215772 / 215773</a>
               </li>
               <li className="flex items-center space-x-3 text-sm">
                 <Mail size={18} className="text-[#00D4FF] flex-shrink-0" />
-                <span className="text-gray-400 break-all">info@sogip.com.my</span>
+                <a href="mailto:info@sogip.com.my" className="text-gray-400 hover:text-[#00D4FF] break-all">info@sogip.com.my</a>
               </li>
             </ul>
           </div>
@@ -103,14 +91,9 @@ export const Footer = () => {
           <p className="text-gray-500 text-sm text-center md:text-left">
             &copy; {currentYear} SOGIP. Managed by Sabah Oil & Gas Development Corporation (SOGDC).
           </p>
-          <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm">
-            <Link to="/privacy" className="text-gray-500 hover:text-[#00D4FF] transition-colors">
-              Privacy Policy
-            </Link>
-            <Link to="/terms" className="text-gray-500 hover:text-[#00D4FF] transition-colors">
-              Terms of Use
-            </Link>
-          </div>
+          <a href="https://sogip.com.my/" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[#00D4FF] text-sm transition-colors">
+            Official SOGDC website
+          </a>
         </div>
       </div>
     </footer>

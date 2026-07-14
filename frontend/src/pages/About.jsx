@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Target, Eye, Users, Award, TrendingUp, Globe } from 'lucide-react';
+import { Target, Eye, Users, Award, Globe } from 'lucide-react';
 import { FadeInUp, FadeInLeft, FadeInRight, StaggerContainer, StaggerItem } from '../components/ScrollAnimations';
 
 export const About = () => {
@@ -42,9 +42,8 @@ export const About = () => {
               </span>
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-4xl mx-auto leading-relaxed">
-              SOGIP is Malaysia's flagship integrated oil and gas industrial park,
-              strategically developed to position Sabah as a regional energy hub while
-              driving sustainable economic growth and job creation.
+              SOGIP is Sabah's first integrated industrial park designated for oil and gas
+              and heavy industries. It is located in Sipitang district beside Brunei Bay.
             </p>
           </motion.div>
         </div>
@@ -76,28 +75,33 @@ const HistorySection = () => {
   const timeline = [
     {
       year: '2010',
-      title: 'Inception',
-      description: 'SOGIP concept introduced as part of Sabah Development Corridor initiative.',
+      title: 'SOGDC Incorporated',
+      description: 'Sabah Oil & Gas Development Corporation was incorporated on 18 August 2010 and tasked by the Sabah State Government to spearhead SOGIP.',
+      source: 'https://sogip.com.my/background/',
     },
     {
-      year: '2015',
-      title: 'Land Acquisition',
-      description: '4,500 acres secured in Sipitang for integrated industrial development.',
+      year: '2017',
+      title: 'SAMUR Begins Operations',
+      description: 'PETRONAS Chemicals Fertiliser Sabah, formerly known as the SAMUR project, began commercial operations in May 2017.',
+      source: 'https://www.petronas.com/media/media-releases/petronas-reports-solid-profits-fy2017',
     },
     {
-      year: '2018',
-      title: 'Infrastructure Development',
-      description: 'Major infrastructure works commenced including deep-water jetty and utilities.',
+      year: 'January 2025',
+      title: 'SOGIP Port Declared',
+      description: 'SOGIP Port was officially declared and a port concession agreement was signed with the Sabah Ports Authority and SOGIP Port Sdn Bhd.',
+      source: 'https://sogip.com.my/majlis-pengisytiharan-rasmi-pelabuhan-sogip-dan-menandatangani-perjanjian-konsesi-pelabuhan-di-antara-lembaga-pelabuhan-pelabuhan-sabah-sabah-oil-gas-development-corporation-sdn-bhd-dan-sogip-p/',
     },
     {
-      year: '2021',
-      title: 'First Anchor Project',
-      description: 'PETRONAS Gas power plant project initiated, marking first major investment.',
+      year: 'May 2025',
+      title: 'Esteel Phase I Launched',
+      description: 'Phase I of the Esteel green steel project was launched as part of a multi-phase development at SOGIP.',
+      source: 'https://sogip.com.my/launching-ceremony-of-esteel-enterprise-sabah-sdn-bhd-phase-i/',
     },
     {
-      year: '2024',
-      title: 'Rapid Expansion',
-      description: '$20B+ in committed investments with multiple anchor projects underway.',
+      year: 'April 2026',
+      title: 'Proposed Energy Hub Expanded',
+      description: 'SOGDC and strategic partners exchanged MoUs for proposed LNG, ammonia and hydrogen storage, power generation and supporting infrastructure.',
+      source: 'https://sogip.com.my/memorandums-of-understanding-mous-between-sabah-oil-gas-development-corporation-sogdc-and-ea-gibson/',
     },
   ];
 
@@ -142,6 +146,9 @@ const HistorySection = () => {
                   </div>
                   <h3 className="text-xl sm:text-2xl font-bold text-white mb-3">{item.title}</h3>
                   <p className="text-gray-400 leading-relaxed">{item.description}</p>
+                  <a href={item.source} target="_blank" rel="noopener noreferrer" className="inline-flex mt-3 text-sm font-semibold text-[#00D4FF] hover:text-[#FFB020] transition-colors">
+                    Official source
+                  </a>
                 </div>
 
                 {/* Timeline Dot */}
@@ -180,9 +187,9 @@ const VisionMissionSection = () => {
               </div>
               <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 sm:mb-6">Our Vision</h2>
               <p className="text-gray-400 text-base sm:text-lg leading-relaxed">
-                To establish SOGIP as Southeast Asia's premier integrated oil and gas
-                industrial park, driving sustainable economic transformation and positioning
-                Sabah as a global energy hub.
+                To be a premier oil and gas industrial park and port for a petrochemical hub,
+                committed to customer satisfaction in cost, quality and delivery through
+                honesty and integrity.
               </p>
             </div>
           </motion.div>
@@ -200,9 +207,9 @@ const VisionMissionSection = () => {
               </div>
               <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 sm:mb-6">Our Mission</h2>
               <p className="text-gray-400 text-base sm:text-lg leading-relaxed">
-                To attract world-class investments, develop state-of-the-art infrastructure,
-                and create sustainable employment opportunities while maintaining environmental
-                stewardship and community engagement.
+                To develop SOGIP as a downstream hub catalyst for oil and gas development in
+                Sabah, create value-added supply chains, support domestic downstream needs,
+                and develop modern, reliable and sustainable port infrastructure.
               </p>
             </div>
           </motion.div>
@@ -234,17 +241,16 @@ const SOGDCSection = () => {
               <span className="text-[#00D4FF]">Corporation</span>
             </h2>
             <p className="text-gray-400 text-base sm:text-lg leading-relaxed mb-6">
-              SOGDC is the dedicated state agency responsible for the planning, development,
-              and management of SOGIP. Established to maximize Sabah's participation in the
-              oil and gas industry, SOGDC works closely with federal agencies, industry
-              partners, and investors to ensure the park's success.
+              Incorporated on 18 August 2010, SOGDC is a Chief Minister Incorporated company
+              wholly owned by the Sabah State Government. It was established to own, develop,
+              manage and market SOGIP.
             </p>
             <div className="space-y-4">
               {[
-                'Strategic planning and park development',
-                'Investment facilitation and promotion',
-                'Infrastructure coordination',
-                'Regulatory compliance and liaison',
+                'Spearhead the development of SOGIP',
+                'Develop downstream oil and gas and heavy industries',
+                'Develop value-added downstream supply chains',
+                'Develop modern and sustainable port infrastructure',
               ].map((item, index) => (
                 <motion.div
                   key={index}
@@ -258,6 +264,9 @@ const SOGDCSection = () => {
                 </motion.div>
               ))}
             </div>
+            <a href="https://sogip.com.my/background/" target="_blank" rel="noopener noreferrer" className="inline-flex mt-6 text-sm font-semibold text-[#00D4FF] hover:text-[#FFB020]">
+              Official SOGDC background
+            </a>
           </motion.div>
 
           <motion.div
@@ -269,13 +278,16 @@ const SOGDCSection = () => {
             <div className="aspect-[4/3] rounded-2xl overflow-hidden">
               <img
                 src="https://images.unsplash.com/photo-1562892302-97faedd66f1c?w=800&q=80"
-                alt="SOGDC"
+                alt=""
                 width="800"
                 height="600"
                 loading="lazy"
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628] via-transparent to-transparent" />
+              <div className="absolute right-3 top-3 rounded-full bg-[#0A1628]/80 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-gray-300 backdrop-blur-sm">
+                Illustrative image
+              </div>
             </div>
           </motion.div>
         </div>
@@ -297,13 +309,8 @@ const LeadershipSection = () => {
     },
     {
       name: 'Mohd Azmir bin Datuk Ramli',
-      role: 'Chief Executive Officer',
+      role: 'Group Managing Director / Chief Executive Officer',
       image: 'https://ui-avatars.com/api/?name=Mohd+Azmir&size=400&background=FFB020&color=fff&font-size=0.35',
-    },
-    {
-      name: 'Datuk Dr Joachim Gunsalam',
-      role: 'Board Member & Deputy CM',
-      image: 'https://ui-avatars.com/api/?name=Joachim+Gunsalam&size=400&background=00D4FF&color=fff&font-size=0.35',
     },
   ];
 
@@ -320,11 +327,14 @@ const LeadershipSection = () => {
             Leadership <span className="text-[#00D4FF]">Team</span>
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
-            Experienced professionals driving SOGIP's vision forward
+            Current leadership listed by SOGDC
           </p>
+          <a href="https://sogip.com.my/bod/" target="_blank" rel="noopener noreferrer" className="inline-flex mt-4 text-sm font-semibold text-[#00D4FF] hover:text-[#FFB020]">
+            View official Board of Directors
+          </a>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-8 max-w-3xl mx-auto">
           {leaders.map((leader, index) => (
             <motion.div
               key={index}
@@ -364,24 +374,24 @@ const ValuesSection = () => {
 
   const values = [
     {
-      icon: Award,
-      title: 'Excellence',
-      description: 'Striving for world-class standards in all operations',
-    },
-    {
       icon: Users,
-      title: 'Collaboration',
-      description: 'Building strong partnerships with stakeholders',
-    },
-    {
-      icon: TrendingUp,
-      title: 'Innovation',
-      description: 'Embracing technology and sustainable practices',
+      title: 'People',
+      description: 'SOGDC describes its people as a valuable organisational asset.',
     },
     {
       icon: Globe,
-      title: 'Sustainability',
-      description: 'Committed to environmental and social responsibility',
+      title: 'Diversity & Teamwork',
+      description: 'The company highlights its diverse workforce and cross-department collaboration.',
+    },
+    {
+      icon: Eye,
+      title: 'Transparency',
+      description: 'SOGDC states that openness and accessible information help build trust.',
+    },
+    {
+      icon: Award,
+      title: 'Honesty & Integrity',
+      description: 'The company commits to truthful, moral, just and fair conduct.',
     },
   ];
 
@@ -395,8 +405,11 @@ const ValuesSection = () => {
           className="text-center mb-12 sm:mb-16 lg:mb-20"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
-            Our Core <span className="text-[#FFB020]">Values</span>
+            Official Core <span className="text-[#FFB020]">Values</span>
           </h2>
+          <a href="https://sogip.com.my/core-values/" target="_blank" rel="noopener noreferrer" className="inline-flex text-sm font-semibold text-[#00D4FF] hover:text-[#FFB020]">
+            View SOGDC's official core-values page
+          </a>
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">

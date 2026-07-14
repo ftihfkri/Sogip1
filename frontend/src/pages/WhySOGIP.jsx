@@ -3,11 +3,8 @@ import { motion, useInView } from 'framer-motion';
 import {
   MapPin,
   Ship,
-  Zap,
   Award,
-  TrendingUp,
   Globe,
-  Building2,
   Package,
   DollarSign,
   Compass,
@@ -44,12 +41,15 @@ const HeroSection = () => {
       <div className="absolute inset-0">
         <img
           src="https://images.unsplash.com/photo-1597334948330-38795f25d05d?w=1920&q=80"
-          alt="Port"
+          alt=""
           width="1920"
           height="1080"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0A1628]/90 via-[#0A1628]/85 to-[#0A1628]" />
+        <div className="absolute bottom-4 right-4 rounded-full bg-[#0A1628]/80 px-3 py-1 text-[10px] font-semibold uppercase tracking-wide text-gray-300 backdrop-blur-sm">
+          Illustrative image
+        </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -69,8 +69,8 @@ const HeroSection = () => {
             </span>
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
-            A unique combination of strategic location, world-class infrastructure,
-            and attractive incentives make SOGIP the ideal destination for oil and gas investments
+            Review SOGIP's published location, site characteristics, industrial infrastructure,
+            confirmed developments and potential Malaysian investment incentives.
           </p>
         </motion.div>
       </div>
@@ -85,23 +85,23 @@ const LocationSection = () => {
 
   const locations = [
     {
-      title: 'Sabah-Brunei-Labuan Triangle',
-      description: 'Positioned at the heart of Southeast Asia\'s energy corridor',
+      title: 'Brunei Bay Location',
+      description: 'Located beside Brunei Bay and close to major Far East shipping routes',
       icon: Compass,
     },
     {
-      title: 'Deep Water Access',
-      description: '25m water depth for Very Large Crude Carriers (VLCCs)',
+      title: 'Natural Deep Water',
+      description: 'Official SOGIP information records natural water depths of 16–25 metres, suitable for SBM access and VLCC anchorage',
       icon: Ship,
     },
     {
-      title: 'Regional Connectivity',
-      description: 'Direct access to ASEAN markets and international shipping lanes',
+      title: 'Road Connectivity',
+      description: 'Connected to the Sabah–Sarawak route through the Pan Borneo Highway network',
       icon: Globe,
     },
     {
-      title: 'Proximity to Resources',
-      description: 'Close to Sabah and Brunei oil and gas fields',
+      title: 'Sipitang District',
+      description: 'Approximately 12 km from Sipitang town and 150 km south of Kota Kinabalu',
       icon: MapPin,
     },
   ];
@@ -119,7 +119,7 @@ const LocationSection = () => {
             Strategic <span className="text-[#00D4FF]">Location</span>
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
-            Ideally positioned for regional and global energy markets
+            Published location and access information
           </p>
         </motion.div>
 
@@ -155,32 +155,32 @@ const InfrastructureSection = () => {
 
   const infrastructure = [
     {
-      title: 'Deep Water Jetty',
+      title: 'Marine & Port Development',
       items: [
-        '25m water depth',
-        'VLCC capable',
-        'Modern berthing facilities',
-        '24/7 operations',
+        'Natural 16–25m water depth',
+        'Suitable for SBM and VLCC anchorage',
+        'SOGIP Port declared in January 2025',
+        'Port development planned in phases',
       ],
       image: 'https://images.unsplash.com/photo-1591907303049-a5e5df26bcb9?w=800&q=80',
     },
     {
       title: 'Power & Utilities',
       items: [
-        'Reliable electricity supply',
-        'Industrial water system',
-        'Telecommunications',
-        'Gas pipeline network',
+        'Electricity infrastructure',
+        'Industrial water infrastructure',
+        'Telecommunications infrastructure',
+        'Existing road and drainage network',
       ],
       image: 'https://images.unsplash.com/photo-1588011930968-eadac80e6a5a?w=800&q=80',
     },
     {
       title: 'Land & Facilities',
       items: [
-        '4,500+ acres available',
-        'Zoned industrial plots',
+        '5,539 acres total area',
+        '3,068 acres onshore',
+        '2,471 acres sea area',
         'Roads and drainage',
-        'Security and monitoring',
       ],
       image: 'https://images.unsplash.com/photo-1509390288171-ce2088f7d08e?w=800&q=80',
     },
@@ -198,10 +198,10 @@ const InfrastructureSection = () => {
           className="text-center mb-12 sm:mb-16 lg:mb-20"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
-            World-Class <span className="text-[#FFB020]">Infrastructure</span>
+            Published <span className="text-[#FFB020]">Infrastructure Overview</span>
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
-            Ready-to-operate facilities and utilities for immediate investment
+            Existing industrial services alongside phased port and project development
           </p>
         </motion.div>
 
@@ -218,13 +218,16 @@ const InfrastructureSection = () => {
               <div className="aspect-[4/5] relative">
                 <img
                   src={item.image}
-                  alt={item.title}
+                  alt=""
                   width="800"
                   height="1000"
                   loading="lazy"
                   className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628] via-[#0A1628]/80 to-transparent" />
+                <div className="absolute right-3 top-3 rounded-full bg-[#0A1628]/80 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-gray-300 backdrop-blur-sm">
+                  Illustrative image
+                </div>
               </div>
               <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-8">
                 <h3 className="text-xl sm:text-2xl font-bold text-white mb-4">{item.title}</h3>
@@ -240,6 +243,12 @@ const InfrastructureSection = () => {
             </motion.div>
           ))}
         </div>
+        <p className="mt-8 text-center text-sm text-gray-500">
+          <a href="https://sogip.com.my/wp-content/uploads/2025/06/SOGIP-BROCHURE-2.pdf" target="_blank" rel="noopener noreferrer" className="text-[#00D4FF] hover:text-[#FFB020]">
+            View the official 2025 SOGIP brochure
+          </a>
+          {' '}for the published infrastructure overview.
+        </p>
       </div>
     </section>
   );
@@ -253,33 +262,18 @@ const IncentivesSection = () => {
   const incentives = [
     {
       icon: DollarSign,
-      title: 'Tax Exemptions',
-      description: 'Up to 100% tax exemption for qualifying pioneer status investments',
+      title: 'Pioneer Status',
+      description: 'Eligible promoted activities may receive a 70–100% income tax exemption for 5–10 years, subject to MIDA approval',
     },
     {
       icon: Package,
-      title: 'Duty-Free Imports',
-      description: 'Exemption on import duties for machinery, equipment, and raw materials',
+      title: 'Import Duty Exemptions',
+      description: 'Qualifying machinery, equipment or inputs may receive exemptions subject to the applicable MIDA and Customs rules',
     },
     {
       icon: Award,
       title: 'Investment Tax Allowance',
-      description: 'Up to 60-100% ITA on qualifying capital expenditure',
-    },
-    {
-      icon: TrendingUp,
-      title: 'Accelerated Depreciation',
-      description: 'Fast-track depreciation on plant and machinery',
-    },
-    {
-      icon: Building2,
-      title: 'Land Lease',
-      description: 'Competitive land lease rates with flexible tenure options',
-    },
-    {
-      icon: Zap,
-      title: 'Utility Subsidies',
-      description: 'Support for power and utility connections',
+      description: 'Eligible projects may receive an allowance of 60–100% on qualifying capital expenditure, subject to MIDA approval',
     },
   ];
 
@@ -293,10 +287,10 @@ const IncentivesSection = () => {
           className="text-center mb-12 sm:mb-16 lg:mb-20"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
-            Investment <span className="text-[#00D4FF]">Incentives</span>
+            Potential Investment <span className="text-[#00D4FF]">Incentives</span>
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
-            Attractive fiscal incentives to maximize your investment returns
+            Examples of Malaysian incentives that may apply, subject to eligibility and approval
           </p>
         </motion.div>
 
@@ -320,6 +314,12 @@ const IncentivesSection = () => {
             </motion.div>
           ))}
         </div>
+        <p className="text-center text-gray-500 text-sm mt-8 max-w-3xl mx-auto">
+          Incentives are not automatic or SOGIP-specific guarantees. Eligibility and approval are determined by the relevant Malaysian authorities.{' '}
+          <a href="https://www.mida.gov.my/faq/" target="_blank" rel="noopener noreferrer" className="text-[#00D4FF] hover:text-[#FFB020]">View current MIDA guidance</a>
+          {' '}and{' '}
+          <a href="https://www.customs.gov.my/en/business/facilitation/exemptions-of-duties-taxes/raw-material-component" target="_blank" rel="noopener noreferrer" className="text-[#00D4FF] hover:text-[#FFB020]">Royal Malaysian Customs guidance</a>.
+        </p>
       </div>
     </section>
   );
@@ -348,27 +348,27 @@ const AdvantagesSection = () => {
           {[
             {
               number: '01',
-              title: 'Integrated Ecosystem',
+              title: 'Downstream Industry Focus',
               description:
-                'Complete value chain from upstream to downstream, enabling synergies and cost efficiencies across operations.',
+                'SOGIP is designated for downstream oil and gas activities and other heavy industries in Sabah.',
             },
             {
               number: '02',
-              title: 'Government Support',
+              title: 'State-Owned Developer',
               description:
-                'Strong backing from state and federal governments with streamlined approval processes and dedicated support.',
+                'SOGDC is wholly owned by the Sabah State Government and is responsible for developing and managing SOGIP.',
             },
             {
               number: '03',
-              title: 'Skilled Workforce',
+              title: 'Confirmed Industrial Projects',
               description:
-                'Access to trained local workforce with ongoing skills development programs and talent pipelines.',
+                'The park hosts the operational SAMUR complex and developments including Esteel, PFLNG 3 and the Sipitang power plant.',
             },
             {
               number: '04',
-              title: 'Sustainability Focus',
+              title: 'Regional Connectivity',
               description:
-                'Commitment to environmental best practices and ESG compliance, aligned with global standards.',
+                'The Brunei Bay location provides maritime access while road links connect Sipitang with Sabah, Sarawak and Brunei.',
             },
           ].map((item, index) => (
             <motion.div

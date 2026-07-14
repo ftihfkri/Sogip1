@@ -69,12 +69,12 @@ const FeaturedNews = () => {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   const featured = {
-    title: 'RM8.88 Billion Energy Hub Launched at SOGIP',
-    date: 'February 2025',
-    category: 'Major Investment',
+    title: 'SOGDC and Partners Exchange MoUs for Proposed SOGIP Energy Hub',
+    date: '13 April 2026',
+    category: 'Proposed Development',
     image: 'https://images.unsplash.com/photo-1566221857770-508d35ee6220?w=1200&q=80',
-    excerpt: 'SOGIP officially launches a groundbreaking RM8.88 billion Energy, Oil, and Gas Hub in partnership with Gibson Shipbrokers Ltd, marking a new era for Sabah\'s energy sector.',
-    link: 'https://www.thevibes.com/articles/business/104869/sabah-launches-rm8.88-billion-energy-hub',
+    excerpt: 'SOGDC and strategic partners exchanged MoUs covering a proposed development that includes LNG, ammonia and hydrogen storage, power generation and supporting infrastructure. The project remains at proposal and study stage.',
+    link: 'https://sogip.com.my/memorandums-of-understanding-mous-between-sabah-oil-gas-development-corporation-sogdc-and-ea-gibson/',
   };
 
   return (
@@ -92,12 +92,15 @@ const FeaturedNews = () => {
               <div className="relative aspect-[4/3] lg:aspect-auto overflow-hidden">
                 <img
                   src={featured.image}
-                  alt={featured.title}
+                  alt=""
                   width="1200"
                   height="800"
                   className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628] to-transparent lg:bg-gradient-to-r" />
+                <div className="absolute left-4 top-4 rounded-full bg-[#0A1628]/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-gray-300 backdrop-blur-sm">
+                  Illustrative image
+                </div>
               </div>
               <div className="p-5 sm:p-8 lg:p-12 flex flex-col justify-center">
                 <div className="inline-block px-4 py-2 bg-[#FFB020]/20 border border-[#FFB020]/30 rounded-full text-[#FFB020] text-sm font-semibold mb-6 w-fit">
@@ -119,7 +122,7 @@ const FeaturedNews = () => {
                   rel="noopener noreferrer"
                   className="inline-flex min-h-11 items-center space-x-2 text-[#00D4FF] hover:text-[#FFB020] transition-colors group/link"
                 >
-                  <span className="font-semibold">Read Full Story</span>
+                  <span className="font-semibold">Read Official Update</span>
                   <ArrowRight
                     size={20}
                     className="group-hover/link:translate-x-2 transition-transform"
@@ -140,52 +143,52 @@ const LatestNews = () => {
 
   const news = [
     {
-      title: 'High-Impact SOGIP Investments to Begin Operations in 2026',
-      date: 'December 30, 2024',
-      category: 'Development',
+      title: 'SOGDC and SEDCO Mining Sign Industrial Development MoU',
+      date: '10 March 2026',
+      category: 'Partnership',
       image: 'https://images.unsplash.com/photo-1775580279270-574c001be3a5?w=800&q=80',
-      excerpt: 'Chief Minister Hajiji Noor confirms major investments including Esteel\'s green steel plant and Petronas floating LNG will commence operations in 2026.',
-      link: 'https://www.thestar.com.my/business/business-news/2024/12/30/high-impact-investments-in-sogip-to-begin-ops-in-2026',
+      excerpt: 'The organisations signed an MoU focused on industrial development at SOGIP and SKSIP, including project coordination and investment promotion.',
+      link: 'https://sogip.com.my/sogdc-and-sedco-mining-sdn-bhd-mou-signing/',
     },
     {
-      title: 'RM15.5 Billion Petroleum Refining Plant Construction Begins',
-      date: 'April 2025',
-      category: 'Infrastructure',
+      title: 'SOGDC Chairman Conducts First Working Visit to SOGIP',
+      date: '4 February 2026',
+      category: 'Project Update',
       image: 'https://images.unsplash.com/photo-1768564206500-5cddb1fea679?w=800&q=80',
-      excerpt: 'Petroventure Energy commences construction of 150,000 BPD refinery, expected to create 5,000 jobs and attract USD3.5 billion in FDI.',
-      link: 'https://www.sabahoilandgas.com.my/post/new-petroleum-storage-and-refining-plant-in-sipitang-to-bring-rm15-5b-in-investments-create-5-000-j',
+      excerpt: 'Datuk Ir. Shahelmey Yahya visited the Esteel, MOLF, PFLNG 3, SAMUR and Sipitang Utilities project sites to review their progress.',
+      link: 'https://sogip.com.my/lawatan-kerja-pertama-pengerusi-sogdc-ke-sogip/',
     },
     {
-      title: 'SOGIP Streetlight Enhancement Project Completed',
-      date: 'August 2025',
-      category: 'Infrastructure',
+      title: 'SOGDC Welcomes New Chairman Datuk Ir. Shahelmey Yahya',
+      date: '16 January 2026',
+      category: 'Leadership',
       image: 'https://images.unsplash.com/photo-1588011930968-eadac80e6a5a?w=800&q=80',
-      excerpt: 'Major infrastructure upgrade enhances safety and operational efficiency for current tenants and future investors.',
-      link: 'https://sogip.com.my/',
+      excerpt: 'SOGDC announced the appointment and the chairman’s first official briefing with the company’s senior leadership.',
+      link: 'https://sogip.com.my/sogdc-menyambut-pelantikan-pengerusi-baharu-yb-datuk-ir-shahelmey-bin-yahya/',
     },
     {
-      title: 'RM29.87 Billion in Total Secured Investments',
-      date: 'December 2024',
-      category: 'Investment',
+      title: 'SOGDC Marks SOGIP Streetlight Power-Supply Milestone',
+      date: '8 November 2025',
+      category: 'Infrastructure',
       image: 'https://images.unsplash.com/photo-1562892302-97faedd66f1c?w=800&q=80',
-      excerpt: 'SOGIP reaches major milestone with nearly RM30 billion in committed investments across multiple sectors including green steel, LNG, and petrochemicals.',
-      link: 'https://www.bernama.com/en/news.php?id=2377573',
+      excerpt: 'SOGDC commemorated implementation of the streetlight electricity-supply project and the first anniversary of streetlight activation within SOGIP.',
+      link: 'https://sogip.com.my/majlis-makan-malam-sogdc-bersama-pemegang-taruh-2025/',
     },
     {
-      title: 'SOGDC Strengthens Role at SOGCE 2025',
-      date: 'January 2025',
-      category: 'Events',
+      title: 'Sabah Formalises 25% Equity Interest in PETRONAS PFLNG 3',
+      date: '31 October 2025',
+      category: 'Investment',
       image: 'https://images.unsplash.com/photo-1509390288171-ce2088f7d08e?w=800&q=80',
-      excerpt: 'SOGDC highlights SOGIP\'s strategic position at Southeast Asia\'s premier energy conference, attracting international attention.',
-      link: 'https://sogip.com.my/sogdc-strengthens-its-strategic-role-at-sogce-2025/',
+      excerpt: 'SMJ Energy entered definitive agreements for a 25% interest in the US$3.1 billion, 2.0 MTPA nearshore LNG facility targeted for the second half of 2027.',
+      link: 'https://cm.sabah.gov.my/siaran-media/4197',
     },
     {
-      title: 'SOGIP Positioned as Southeast Asia Petrochemical Hub',
-      date: 'November 2024',
-      category: 'Strategic',
+      title: 'Esteel Enterprise Sabah Phase I Officially Launched',
+      date: '30 May 2025',
+      category: 'Project Milestone',
       image: 'https://images.unsplash.com/photo-1640621202549-b813eb0a0720?w=800&q=80',
-      excerpt: 'Chief Minister envisions SOGIP as the region\'s premier downstream hub for petrochemicals, gas, and petroleum products.',
-      link: 'https://international.astroawani.com/malaysia-news/sabah-cm-envisages-sogip-southeast-asia-s-petrochemical-gas-petroleum-downstream-hub-286818',
+      excerpt: 'SOGDC reported the launch of Phase I of Esteel Enterprise Sabah’s multi-phase green steel development.',
+      link: 'https://sogip.com.my/launching-ceremony-of-esteel-enterprise-sabah-sdn-bhd-phase-i/',
     },
   ];
 
@@ -223,13 +226,16 @@ const LatestNews = () => {
                   <div className="aspect-[16/10] relative overflow-hidden">
                     <img
                       src={item.image}
-                      alt={item.title}
+                      alt=""
                       width="800"
                       height="500"
                       loading="lazy"
                       className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628] via-[#0A1628]/60 to-transparent" />
+                    <div className="absolute bottom-3 right-3 rounded-full bg-[#0A1628]/80 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-gray-300 backdrop-blur-sm">
+                      Illustrative image
+                    </div>
                     <div className="absolute top-4 left-4">
                       <div className="px-4 py-2 bg-[#00D4FF] backdrop-blur-md border-2 border-white/30 rounded-full text-white text-xs font-bold shadow-xl shadow-[#00D4FF]/50">
                         {item.category}

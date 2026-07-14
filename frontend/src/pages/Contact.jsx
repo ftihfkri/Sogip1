@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Mail, Phone, MapPin, Clock, Send } from 'lucide-react';
+import { Mail, Phone, MapPin, Send } from 'lucide-react';
 
 export const Contact = () => {
   return (
@@ -36,8 +36,8 @@ const HeroSection = () => {
             </span>
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-4xl mx-auto leading-relaxed">
-            Our investment team is ready to guide you through opportunities at SOGIP.
-            Reach out today to start your journey.
+            Use SOGDC's official email and telephone channels to request current information
+            about SOGIP projects, site availability and investment enquiries.
           </p>
         </motion.div>
       </div>
@@ -58,31 +58,27 @@ const ContactFormSection = () => {
     message: '',
   });
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Mock submission - will be replaced with actual API call
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitStatus('success');
-      setFormData({
-        name: '',
-        email: '',
-        company: '',
-        phone: '',
-        investmentType: '',
-        message: '',
-      });
-      setTimeout(() => setSubmitStatus(null), 5000);
-    }, 1500);
+    const subject = `SOGIP enquiry from ${formData.name}`;
+    const body = [
+      `Name: ${formData.name}`,
+      `Email: ${formData.email}`,
+      `Company: ${formData.company || 'Not provided'}`,
+      `Phone: ${formData.phone || 'Not provided'}`,
+      `Investment interest: ${formData.investmentType || 'Not specified'}`,
+      '',
+      formData.message,
+    ].join('\n');
+
+    setSubmitStatus('email');
+    window.location.href = `mailto:info@sogip.com.my?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   };
 
   return (
@@ -204,22 +200,15 @@ const ContactFormSection = () => {
 
               <motion.button
                 type="submit"
-                disabled={isSubmitting}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full min-h-12 px-8 py-3 sm:py-4 bg-gradient-to-r from-[#00D4FF] to-[#0099CC] text-white font-semibold rounded-lg shadow-xl shadow-[#00D4FF]/30 hover:shadow-[#00D4FF]/50 transition-all duration-300 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full min-h-12 px-8 py-3 sm:py-4 bg-gradient-to-r from-[#00D4FF] to-[#0099CC] text-white font-semibold rounded-lg shadow-xl shadow-[#00D4FF]/30 hover:shadow-[#00D4FF]/50 transition-all duration-300 flex items-center justify-center space-x-2"
               >
-                {isSubmitting ? (
-                  <span>Sending...</span>
-                ) : (
-                  <>
-                    <span>Send Message</span>
-                    <Send size={18} />
-                  </>
-                )}
+                <span>Prepare Email</span>
+                <Send size={18} />
               </motion.button>
 
-              {submitStatus === 'success' && (
+              {submitStatus === 'email' && (
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -227,7 +216,7 @@ const ContactFormSection = () => {
                   aria-live="polite"
                   className="p-4 bg-green-500/10 border border-green-500/30 rounded-lg text-green-400 text-sm"
                 >
-                  Thank you! Your message has been sent successfully. We'll get back to you soon.
+                  Your email application should now open with the enquiry prepared. Review it and press Send to deliver it to SOGDC.
                 </motion.div>
               )}
             </form>
@@ -246,22 +235,17 @@ const ContactFormSection = () => {
               {
                 icon: MapPin,
                 title: 'Office Location',
-                content: 'SOGDC Office\nKota Kinabalu, Sabah\nMalaysia',
+                content: 'Level 11, Wisma Innoprise, Jalan Sulaman\nP.O. Box 17922, 88874 Kota Kinabalu\nSabah, Malaysia',
               },
               {
                 icon: Phone,
                 title: 'Phone',
-                content: '+60 88 XXX XXXX\n+60 88 XXX XXXY (Investment Hotline)',
+                content: '+60 88 215772 / 215773\nFax: +60 88 215771',
               },
               {
                 icon: Mail,
                 title: 'Email',
-                content: 'info@sogip.com.my\ninvestment@sogip.com.my',
-              },
-              {
-                icon: Clock,
-                title: 'Business Hours',
-                content: 'Monday - Friday: 9:00 AM - 5:00 PM\nSaturday: 9:00 AM - 1:00 PM',
+                content: 'info@sogip.com.my',
               },
             ].map((item, index) => (
               <motion.div
@@ -308,26 +292,29 @@ const ContactInfoSection = () => {
           className="text-center mb-10 sm:mb-16"
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 sm:mb-6">
-            Key <span className="text-[#00D4FF]">Departments</span>
+            Official <span className="text-[#00D4FF]">Contact Channels</span>
           </h2>
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
           {[
             {
-              department: 'Investment & Promotion',
-              contact: 'investment@sogip.com.my',
-              description: 'Land leasing, investment opportunities, and incentives',
+              department: 'General Enquiries',
+              contact: 'info@sogip.com.my',
+              href: 'mailto:info@sogip.com.my',
+              description: 'Official SOGDC email for enquiries and feedback',
             },
             {
-              department: 'Operations & Development',
-              contact: 'operations@sogip.com.my',
-              description: 'Infrastructure, utilities, and facilities management',
+              department: 'Telephone',
+              contact: '+60 88 215772 / 215773',
+              href: 'tel:+6088215772',
+              description: 'Official SOGDC telephone numbers',
             },
             {
-              department: 'Media & Communications',
-              contact: 'media@sogip.com.my',
-              description: 'Press inquiries, news, and public relations',
+              department: 'Official Website',
+              contact: 'sogip.com.my',
+              href: 'https://sogip.com.my/',
+              description: 'Official publications, news, tenders, and project information',
             },
           ].map((dept, index) => (
             <motion.div
@@ -340,7 +327,9 @@ const ContactInfoSection = () => {
               <h3 className="text-xl font-bold text-white mb-3">{dept.department}</h3>
               <p className="text-gray-400 text-sm mb-4 leading-relaxed">{dept.description}</p>
               <a
-                href={`mailto:${dept.contact}`}
+                href={dept.href}
+                target={dept.href.startsWith('http') ? '_blank' : undefined}
+                rel={dept.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                 className="text-[#00D4FF] hover:text-[#FFB020] transition-colors text-sm font-medium"
               >
                 {dept.contact}
@@ -372,8 +361,11 @@ const MapSection = () => {
               <h3 className="text-2xl font-bold text-white mb-2">SOGIP Location</h3>
               <p className="text-gray-400">Sipitang, Sabah, Malaysia</p>
               <p className="text-sm text-gray-500 mt-4">
-                [Interactive map will be integrated here]
+                Approximately 12 km from Sipitang town, at 5°00′17.9″N 115°30′00.5″E
               </p>
+              <a href="https://www.google.com/maps?q=5.004972,115.500139" target="_blank" rel="noopener noreferrer" className="inline-flex mt-5 text-[#00D4FF] hover:text-[#FFB020] font-semibold transition-colors">
+                Open location in Google Maps
+              </a>
             </div>
           </div>
         </motion.div>

@@ -4,13 +4,11 @@ import { Link } from 'react-router-dom';
 import {
   ArrowRight,
   MapPin,
-  TrendingUp,
   Award,
   Building2,
   Ship,
   Zap,
   Globe,
-  CheckCircle2,
 } from 'lucide-react';
 import { HorizontalMarquee } from '../components/HorizontalMarquee';
 import { FadeInUp, FadeInLeft, FadeInRight, StaggerContainer, StaggerItem } from '../components/ScrollAnimations';
@@ -68,7 +66,7 @@ export const Home = () => {
               >
                 <div className="h-px w-8 sm:w-12 flex-shrink-0 bg-gradient-to-r from-[#00D4FF] to-transparent" />
                 <span className="text-[#00D4FF] text-xs sm:text-sm font-semibold tracking-wider uppercase">
-                  Sabah Oil & Gas Industrial Park
+                  Sipitang Oil &amp; Gas Industrial Park
                 </span>
               </motion.div>
 
@@ -108,9 +106,8 @@ export const Home = () => {
                 transition={{ duration: 0.8, delay: 1 }}
                 className="text-base sm:text-lg md:text-xl text-gray-300 mb-8 sm:mb-10 leading-relaxed max-w-2xl"
               >
-                Malaysia's premier integrated oil and gas industrial park,
-                strategically positioned in the Sabah-Brunei-Labuan triangle to
-                drive sustainable energy development.
+                Sabah's first integrated industrial park designated for oil and gas
+                and heavy industries, located beside Brunei Bay in Sipitang district.
               </motion.p>
 
               {/* CTA Buttons */}
@@ -185,14 +182,14 @@ export const Home = () => {
 // Marquee Section - Horizontal Scroll
 const MarqueeSection = () => {
   const phrases = [
-    'World-Class Infrastructure',
-    'Strategic Location',
-    'RM30B+ Investments',
-    'Deep Water Port',
-    'Tax Incentives',
-    'Green Technology',
-    'Regional Energy Hub',
-    '15,000+ Jobs Created',
+    '5,539 Acres Total Area',
+    '3,068 Acres Onshore',
+    '2,471 Acres Sea Area',
+    '16–25m Natural Water Depth',
+    'SAMUR Operational Since 2017',
+    'PFLNG 3 Under Construction',
+    'SOGIP Port Declared in 2025',
+    'Sabah State-Owned Developer',
   ];
 
   return (
@@ -220,10 +217,10 @@ const StatsSection = () => {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   const stats = [
-    { number: '01', value: '4,500+', label: 'Acres of Land', icon: MapPin },
-    { number: '02', value: '25m', label: 'Water Depth (VLCC)', icon: Ship },
-    { number: '03', value: '$20B+', label: 'Investment Value', icon: TrendingUp },
-    { number: '04', value: '15,000+', label: 'Jobs Created', icon: Building2 },
+    { number: '01', value: '5,539', label: 'Total Acres', icon: MapPin },
+    { number: '02', value: '3,068', label: 'Onshore Acres', icon: Building2 },
+    { number: '03', value: '2,471', label: 'Sea Area Acres', icon: Globe },
+    { number: '04', value: '16–25m', label: 'Natural Water Depth', icon: Ship },
   ];
 
   return (
@@ -298,25 +295,25 @@ const WhySOGIPSection = () => {
       icon: Globe,
       title: 'Strategic Location',
       description:
-        'Positioned in the Sabah-Brunei-Labuan triangle, offering unparalleled access to regional markets.',
+        'Located beside Brunei Bay, approximately 12 km from Sipitang town and 150 km south of Kota Kinabalu.',
     },
     {
       icon: Ship,
-      title: 'Deep Water Port',
+      title: 'Natural Deep Water',
       description:
-        '25m water depth capable of accommodating Very Large Crude Carriers (VLCCs).',
+        'Official SOGIP information records 16–25m natural water depth suitable for SBM access and VLCC anchorage.',
     },
     {
       icon: Zap,
-      title: 'Infrastructure Ready',
+      title: 'Industrial Services',
       description:
-        'Complete utilities, power supply, and logistics infrastructure for immediate operations.',
+        'The park provides industrial roads, drainage, water, electricity and telecommunications, with port development proceeding in phases.',
     },
     {
       icon: Award,
-      title: 'Tax Incentives',
+      title: 'State-Owned Development',
       description:
-        'Attractive investment incentives including tax exemptions and duty-free imports.',
+        'SOGDC is wholly owned by the Sabah State Government and is responsible for developing and managing SOGIP.',
     },
   ];
 
@@ -343,7 +340,7 @@ const WhySOGIPSection = () => {
               Why Choose <span className="text-[#00D4FF]">SOGIP</span>
             </h2>
             <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
-              A world-class industrial ecosystem designed for sustainable energy development
+              Published site advantages and confirmed industrial developments in Sipitang
             </p>
           </div>
         </FadeInUp>
@@ -385,21 +382,24 @@ const ProjectsSection = () => {
 
   const projects = [
     {
-      title: 'LNG Facility',
-      value: '$8.5B',
-      status: 'In Progress',
+      title: 'PETRONAS PFLNG 3',
+      value: 'US$3.1B · 2.0 MTPA',
+      status: 'Under Construction',
+      source: 'https://cm.sabah.gov.my/siaran-media/4197',
       image: 'https://images.unsplash.com/photo-1709873906965-e3a3c1bd1b94?w=800&q=80',
     },
     {
-      title: 'PETRONAS Gas Power Plant',
-      value: '$3.2B',
-      status: 'Operational',
+      title: 'Esteel Green Steel Project',
+      value: 'Approx. RM31B',
+      status: 'Phase I Launched',
+      source: 'https://cm.sabah.gov.my/siaran-media/3324',
       image: 'https://images.unsplash.com/photo-1566221857770-508d35ee6220?w=800&q=80',
     },
     {
-      title: 'SAMUR Ammonia Plant',
-      value: '$2.8B',
-      status: 'Planning',
+      title: 'SAMUR Fertiliser Complex',
+      value: '1.9 MTPA Combined Capacity',
+      status: 'Operational Since 2017',
+      source: 'https://www.petronas.com/pcg/media/media-releases/smj-completes-acquisition-equity-interest-petronas-chemicals-fertiliser-sabah',
       image: 'https://images.unsplash.com/photo-1775580279270-574c001be3a5?w=800&q=80',
     },
   ];
@@ -425,7 +425,7 @@ const ProjectsSection = () => {
               Anchor <span className="text-[#FFB020]">Projects</span>
             </h2>
             <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
-              Major investments driving economic growth and industrial development
+              Selected operating, under-construction and publicly announced developments
             </p>
           </div>
         </FadeInUp>
@@ -444,13 +444,16 @@ const ProjectsSection = () => {
                       whileHover={{ scale: 1.15 }}
                       transition={{ duration: 0.6 }}
                       src={project.image}
-                      alt={project.title}
+                      alt=""
                       width="800"
                       height="1000"
                       loading="lazy"
                       className="absolute inset-0 w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628] via-[#0A1628]/60 to-transparent" />
+                    <div className="absolute right-3 top-3 rounded-full bg-[#0A1628]/80 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-gray-300 backdrop-blur-sm">
+                      Illustrative image
+                    </div>
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-8">
                     <motion.div
@@ -463,6 +466,9 @@ const ProjectsSection = () => {
                     </motion.div>
                     <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">{project.title}</h3>
                     <p className="text-[#FFB020] text-xl font-semibold">{project.value}</p>
+                    <a href={project.source} target="_blank" rel="noopener noreferrer" className="inline-flex mt-3 text-sm font-semibold text-[#00D4FF] hover:text-white transition-colors">
+                      Official source
+                    </a>
                   </div>
                 </motion.div>
               </StaggerItem>
@@ -515,7 +521,7 @@ const CTASection = () => {
             ?
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-gray-400 mb-8 sm:mb-10">
-            Join industry leaders in shaping the energy landscape of Southeast Asia
+            Contact SOGDC for current site information, project updates and investment enquiries.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/contact" className="w-full sm:w-auto">
@@ -524,7 +530,7 @@ const CTASection = () => {
                 whileTap={{ scale: 0.95 }}
                 className="w-full min-h-12 px-7 sm:px-10 py-3 sm:py-5 bg-gradient-to-r from-[#00D4FF] to-[#0099CC] text-white text-base sm:text-lg font-semibold rounded-lg shadow-2xl shadow-[#00D4FF]/30 hover:shadow-[#00D4FF]/50 transition-all duration-300"
               >
-                Get Started Today
+                Contact SOGDC
               </motion.button>
             </Link>
             <Link to="/about" className="w-full sm:w-auto">

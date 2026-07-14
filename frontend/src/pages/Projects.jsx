@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Calendar, DollarSign, MapPin, TrendingUp, CheckCircle2, X } from 'lucide-react';
+import { Calendar, MapPin, TrendingUp, CheckCircle2, X } from 'lucide-react';
 import { HorizontalImageScroll } from '../components/HorizontalImageScroll';
 
 export const Projects = () => {
@@ -38,7 +38,7 @@ const HeroSection = () => {
             </span>
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-4xl mx-auto leading-relaxed">
-            $20B+ in committed investments driving SOGIP's transformation into Southeast Asia's premier energy hub
+            Verified operating assets, projects under construction, and publicly announced developments at SOGIP
           </p>
         </motion.div>
       </div>
@@ -51,28 +51,28 @@ const ImageScrollSection = () => {
   const facilityImages = [
     {
       url: 'https://images.unsplash.com/photo-1709873906965-e3a3c1bd1b94?w=800&q=80',
-      title: 'LNG Facility',
-      subtitle: 'State-of-the-art processing',
+      title: 'PETRONAS PFLNG 3',
+      subtitle: '2.0 MTPA design capacity',
     },
     {
       url: 'https://images.unsplash.com/photo-1566221857770-508d35ee6220?w=800&q=80',
       title: 'Power Generation',
-      subtitle: '600MW capacity',
+      subtitle: '52MW Sipitang power plant',
     },
     {
       url: 'https://images.unsplash.com/photo-1775580279270-574c001be3a5?w=800&q=80',
-      title: 'Refinery Complex',
-      subtitle: '150,000 BPD processing',
+      title: 'Petroventure Development',
+      subtitle: 'Up to 150,000 BPD announced capacity',
     },
     {
       url: 'https://images.unsplash.com/photo-1597334948330-38795f25d05d?w=800&q=80',
-      title: 'Deep Water Port',
-      subtitle: 'VLCC capable berths',
+      title: 'SOGIP Port',
+      subtitle: 'Phased port development',
     },
     {
       url: 'https://images.unsplash.com/photo-1562892302-97faedd66f1c?w=800&q=80',
-      title: 'Marine Facilities',
-      subtitle: 'World-class infrastructure',
+      title: 'SAMUR Complex',
+      subtitle: 'Operational since May 2017',
     },
   ];
 
@@ -80,8 +80,9 @@ const ImageScrollSection = () => {
     <section className="py-14 sm:py-16 lg:py-20 bg-gradient-to-b from-[#0A1628] to-[#0D1F36]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 sm:mb-8">
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center">
-          World-Class <span className="text-[#00D4FF]">Facilities</span>
+          Development <span className="text-[#00D4FF]">Overview</span>
         </h2>
+        <p className="mt-3 text-sm text-gray-500 text-center">Images are illustrative; project details below are linked to official sources.</p>
       </div>
       <HorizontalImageScroll images={facilityImages} direction="left" />
     </section>
@@ -113,98 +114,104 @@ const AnchorProjectsSection = () => {
   const projects = [
     {
       id: 1,
-      title: 'LNG Facility',
-      value: '$8.5B',
-      status: 'In Progress',
-      completion: '2026',
-      location: 'Zone A - LNG Complex',
-      description: 'Large-scale liquefied natural gas processing and export facility with capacity for 3.5 million tonnes per annum.',
+      title: 'PETRONAS PFLNG 3',
+      value: 'US$3.1B',
+      status: 'Under Construction',
+      timeline: 'Targeted for H2 2027',
+      location: 'Nearshore at SOGIP',
+      description: 'PETRONAS PFLNG 3 is a nearshore floating LNG facility designed to produce 2.0 million tonnes per annum.',
       highlights: [
-        'State-of-the-art LNG processing technology',
-        'Export capacity to Asian markets',
-        'Integrated storage and loading facilities',
-        '1,200+ jobs during construction',
+        '2.0 MTPA design capacity',
+        'Under construction for SOGIP deployment',
+        'Expected to commence operations in the second half of 2027',
+        'SMJ Energy holds a 25% equity interest',
       ],
+      source: 'https://cm.sabah.gov.my/siaran-media/4197',
       image: 'https://images.unsplash.com/photo-1709873906965-e3a3c1bd1b94?w=800&q=80',
     },
     {
       id: 2,
-      title: 'PETRONAS Gas Power Plant',
-      value: '$3.2B',
-      status: 'Operational',
-      completion: '2023',
-      location: 'Zone D - Utilities Hub',
-      description: 'Combined cycle gas power plant providing 600MW of reliable power to SOGIP and surrounding areas.',
+      title: 'Esteel Green Steel Project',
+      value: 'Approx. RM31B',
+      status: 'Phase I Launched',
+      timeline: 'Phased development',
+      location: 'SOGIP, Sipitang',
+      description: 'Esteel Enterprise Sabah is developing a multi-phase green steel project at SOGIP. Phase I was launched on 30 May 2025.',
       highlights: [
-        '600MW generation capacity',
-        'High-efficiency combined cycle technology',
-        'Reliable power for industrial operations',
-        'Reduced carbon emissions',
+        'Approximately RM31 billion announced overall investment',
+        'Phase I launched in May 2025',
+        'Uses natural gas as a reducing agent',
+        'Designed as an integrated green steel value chain',
       ],
+      source: 'https://cm.sabah.gov.my/siaran-media/3324',
       image: 'https://images.unsplash.com/photo-1566221857770-508d35ee6220?w=800&q=80',
     },
     {
       id: 3,
-      title: 'Petroventure Refinery',
-      value: '$4.1B',
-      status: 'In Progress',
-      completion: '2027',
-      location: 'Zone C - Refinery Area',
-      description: 'Modern refinery complex processing 150,000 barrels per day with advanced environmental controls.',
+      title: 'Sipitang Power Plant',
+      value: 'Approx. RM230M',
+      status: 'Under Construction',
+      timeline: 'Targeted by end-2026',
+      location: 'SOGIP, Sipitang',
+      description: 'Sipitang Utilities Sdn Bhd is developing a 52MW power plant to supply electricity to the upcoming nearshore LNG facility.',
       highlights: [
-        '150,000 bpd processing capacity',
-        'Advanced refining technology',
-        'Multiple product streams',
-        'Environmental compliance systems',
+        '52MW generation capacity',
+        'Construction reported on schedule in PETRONAS Gas Berhad’s 2025 report',
+        'Targeted for completion by the end of 2026',
+        'Supports the upcoming Sipitang LNG project',
       ],
+      source: 'https://www.petronas.com/pgb/sites/default/files/2026-03/PGB%20Integrated%20Report%202025_1.pdf',
       image: 'https://images.unsplash.com/photo-1775580279270-574c001be3a5?w=800&q=80',
     },
     {
       id: 4,
-      title: 'SAMUR Ammonia & Urea Plant',
-      value: '$2.8B',
-      status: 'Planning',
-      completion: '2028',
-      location: 'Zone B - Petrochemical Complex',
-      description: 'Integrated ammonia and urea production facility targeting agricultural and industrial markets.',
+      title: 'SAMUR Fertiliser Complex',
+      value: 'Approx. RM4.6B',
+      status: 'Operational',
+      timeline: 'Commercial since May 2017',
+      location: '211-acre site at SOGIP',
+      description: 'PETRONAS Chemicals Fertiliser Sabah operates the integrated ammonia and urea complex formerly known as the SAMUR project.',
       highlights: [
-        '1.2M tonnes ammonia per year',
-        '1.8M tonnes urea per year',
-        'Export-oriented production',
-        'Sustainable production methods',
+        '1.2 MTPA granulated urea capacity',
+        '740,000 tonnes per annum liquid ammonia capacity',
+        'Commercial operations began in May 2017',
+        '25% equity held by Sabah through SMJ Energy',
       ],
+      source: 'https://www.petronas.com/pcg/media/media-releases/smj-completes-acquisition-equity-interest-petronas-chemicals-fertiliser-sabah',
       image: 'https://images.unsplash.com/photo-1768564206500-5cddb1fea679?w=800&q=80',
     },
     {
       id: 5,
-      title: 'Deep Water Jetty Expansion',
-      value: '$850M',
-      status: 'In Progress',
-      completion: '2025',
-      location: 'Marine Facilities',
-      description: 'Expansion of deep-water berthing facilities to accommodate increased VLCC traffic and cargo volume.',
+      title: 'Petroventure Storage & Refinery',
+      value: 'RM15.5B announced',
+      status: 'Development Announced',
+      timeline: 'Completion not publicly confirmed',
+      location: '400-acre site at SOGIP',
+      description: 'Petroventure Energy announced a petroleum storage and refining development with foreign direct investment projected at US$3.5 billion (RM15.5 billion at announcement).',
       highlights: [
-        'Additional berths for VLCCs',
-        '25m+ water depth maintained',
-        'Advanced loading systems',
-        'Enhanced safety features',
+        'Up to 150,000 barrels per day announced refinery capacity',
+        'Three million cubic metres announced storage capacity',
+        'More than 3,000 projected construction jobs',
+        'More than 1,000 projected permanent jobs',
       ],
+      source: 'https://cm.sabah.gov.my/siaran-media/2794',
       image: 'https://images.unsplash.com/photo-1562892302-97faedd66f1c?w=800&q=80',
     },
     {
       id: 6,
-      title: 'Central Utilities Complex',
-      value: '$1.5B',
-      status: 'Operational',
-      completion: '2024',
-      location: 'Zone D - Utilities Hub',
-      description: 'Integrated utilities providing water, steam, compressed air, and industrial gases to all facilities.',
+      title: 'Integrated Energy Hub Proposal',
+      value: 'Value not confirmed',
+      status: 'Proposed / MoU Stage',
+      timeline: 'Announced April 2026',
+      location: 'Approximately 275 acres at SOGIP',
+      description: 'SOGDC and strategic partners announced a proposed storage and distribution hub for LNG, ammonia and hydrogen, together with supporting infrastructure.',
       highlights: [
-        'Desalination plant - 50,000 m³/day',
-        'Industrial water treatment',
-        'Steam generation and distribution',
-        'Compressed air and nitrogen supply',
+        'Proposed LNG, ammonia and hydrogen storage',
+        'Proposed petrochemical infrastructure',
+        '400–500MW CCGT power plant feasibility study',
+        'Subject to studies and definitive agreements',
       ],
+      source: 'https://cm.sabah.gov.my/siaran-media/6705',
       image: 'https://images.unsplash.com/photo-1588011930968-eadac80e6a5a?w=800&q=80',
     },
   ];
@@ -234,12 +241,15 @@ const AnchorProjectsSection = () => {
                   className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628] via-[#0A1628]/70 to-transparent" />
+                <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-[#0A1628]/75 text-[11px] font-semibold uppercase tracking-wide text-gray-300 backdrop-blur-sm">
+                  Illustrative image
+                </div>
                 <div className="absolute top-4 right-4 sm:top-6 sm:right-6">
                   <div
                     className={`px-4 py-2 backdrop-blur-md border-2 rounded-full text-xs font-bold shadow-xl ${
                       project.status === 'Operational'
                         ? 'bg-green-500/90 border-green-300 text-white shadow-green-500/50'
-                        : project.status === 'In Progress'
+                        : project.status === 'Under Construction'
                         ? 'bg-blue-500/90 border-blue-300 text-white shadow-blue-500/50'
                         : 'bg-amber-500/90 border-amber-300 text-white shadow-amber-500/50'
                     }`}
@@ -253,7 +263,7 @@ const AnchorProjectsSection = () => {
                     <div className="text-[#FFB020] text-2xl font-bold">{project.value}</div>
                     <div className="flex items-center space-x-2 text-gray-400 text-sm">
                       <Calendar size={16} />
-                      <span>{project.completion}</span>
+                      <span>{project.timeline}</span>
                     </div>
                   </div>
                 </div>
@@ -307,7 +317,7 @@ const AnchorProjectsSection = () => {
                       </div>
                       <div className="flex items-center space-x-2">
                         <Calendar size={16} className="text-[#FFB020]" />
-                        <span>Target: {selectedProject.completion}</span>
+                        <span>Timeline: {selectedProject.timeline}</span>
                       </div>
                     </div>
                   </div>
@@ -318,6 +328,15 @@ const AnchorProjectsSection = () => {
                 </div>
 
                 <p className="text-gray-400 text-base sm:text-lg leading-relaxed mb-6 sm:mb-8">{selectedProject.description}</p>
+
+                <a
+                  href={selectedProject.source}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex mb-6 sm:mb-8 text-sm font-semibold text-[#00D4FF] hover:text-white transition-colors"
+                >
+                  Read official source →
+                </a>
 
                 <div>
                   <h3 className="text-xl font-bold text-white mb-4">Key Highlights</h3>
@@ -344,10 +363,10 @@ const InvestmentStatsSection = () => {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   const stats = [
-    { value: '$20B+', label: 'Total Committed Investment', icon: DollarSign },
-    { value: '6', label: 'Major Anchor Projects', icon: TrendingUp },
-    { value: '15,000+', label: 'Jobs Created', icon: CheckCircle2 },
-    { value: '2028', label: 'Full Park Completion', icon: Calendar },
+    { value: '5,539', label: 'Total Area (acres)', icon: MapPin },
+    { value: '2.0 MTPA', label: 'PFLNG 3 Design Capacity', icon: TrendingUp },
+    { value: '52MW', label: 'Sipitang Power Plant', icon: CheckCircle2 },
+    { value: '2017', label: 'SAMUR Commercial Operations', icon: Calendar },
   ];
 
   return (
@@ -388,21 +407,24 @@ const UpcomingProjectsSection = () => {
           transition={{ duration: 0.8 }}
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
-            More Projects{' '}
+            Current Development{' '}
             <span className="bg-gradient-to-r from-[#00D4FF] to-[#FFB020] bg-clip-text text-transparent">
-              Coming Soon
+              Updates
             </span>
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-gray-400 mb-8 sm:mb-10 max-w-3xl mx-auto">
-            Additional investments in renewable energy, hydrogen production, and advanced manufacturing are in the pipeline
+            In April 2026, SOGDC and partners announced a proposed integrated energy hub. The proposal remains subject to feasibility work and definitive agreements.
           </p>
-          <motion.button
+          <motion.a
+            href="https://cm.sabah.gov.my/siaran-media/6705"
+            target="_blank"
+            rel="noreferrer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="w-full sm:w-auto min-h-12 px-7 sm:px-10 py-3 sm:py-5 bg-gradient-to-r from-[#00D4FF] to-[#0099CC] text-white text-base sm:text-lg font-semibold rounded-lg shadow-2xl shadow-[#00D4FF]/30 hover:shadow-[#00D4FF]/50 transition-all duration-300"
+            className="inline-flex items-center justify-center w-full sm:w-auto min-h-12 px-7 sm:px-10 py-3 sm:py-5 bg-gradient-to-r from-[#00D4FF] to-[#0099CC] text-white text-base sm:text-lg font-semibold rounded-lg shadow-2xl shadow-[#00D4FF]/30 hover:shadow-[#00D4FF]/50 transition-all duration-300"
           >
-            Contact Investment Team
-          </motion.button>
+            Read Official Announcement
+          </motion.a>
         </motion.div>
       </div>
     </section>
